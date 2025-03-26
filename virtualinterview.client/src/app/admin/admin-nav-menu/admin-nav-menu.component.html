@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container-fluid">
+    <!-- Brand / Logo (Optional) -->
+    <a class="navbar-brand" [routerLink]="['/admin']">Admin Logo</a>
+
+    <!-- Toggle Button for Mobile View -->
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navigation Links -->
+    <div class="collapse navbar-collapse" [ngClass]="{'show': isNavbarOpen}" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/admin/roles']" routerLinkActive="active" (click)="closeNavBar()">Roles</a>
+        </li>
+      </ul>
+
+      <!-- Logout Button (Float Right) -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-danger" (click)="logout(); closeNavBar()" title="Sign out">
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
