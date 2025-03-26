@@ -12,36 +12,16 @@ namespace virtualInterview.Repository.RolesRepositories
     {
         private readonly VirtualInterviewDbContext _context;
 
-        public RoleRepository(VirtualInterviewDbContext context)
-        {
-            _context = context;
-        }
+        // Step 1: Implement constructor and inject database context
 
-        public async Task<IEnumerable<Role>> GetAllRoles()
-        {
-            // Retrieve all roles from the database where IsDelete is false
-            return new List<Role>();
-        }
+        //Step 2: Implement method to retrieve all roles in paginator format
 
-        public async Task<Role> GetRoleById(string roleId)
-        {
-            // Fetch a role by ID where IsDelete is false
-            return new Role();
-        }
+        // Step 3: Implement method to retrieve all roles from the database
 
-        public async Task AddRole(Role role)
-        {
-            // Set CreatedOn, IsActive, and save role to the database
-        }
+        // Step 4: Implement method to add a new role, assign values, and save it
 
-        public async Task UpdateRole(Role role)
-        {
-            // Find existing role, update properties, and save changes
-        }
+        // Step 5: Implement method to update an existing role's details
 
-        public async Task DeleteRole(string roleId)
-        {
-            // Find role by ID, mark it as deleted, and save changes
-        }
+        // Step 6: Implement method to mark a role as deleted (soft delete)
     }
 }

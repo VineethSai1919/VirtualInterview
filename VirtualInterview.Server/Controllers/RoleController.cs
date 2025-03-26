@@ -10,43 +10,45 @@ namespace VirtualInterview.Server.Controllers
     {
         private readonly IRoleRepository _roleRepository;
 
-        public RoleController(IRoleRepository roleRepository)
-        {
-            _roleRepository = roleRepository;
-        }
+        // Step 1: Inject the repository into the controller
 
         [HttpGet]
+        [Route("GetRoles")]
+        public async Task<ActionResult> GetRoles(int pageIndex, int pageSize, string searchname)
+        {
+            //Step 2: Implement API endpoint to retrieve all roles in paginator format
+            return Ok();
+        }
+        [HttpGet]
+        [Route("GetAllRoles")]
         public async Task<IActionResult> GetAllRoles()
         {
-            // Call repository method to get all roles and return response
+            // Step 3: Implement API endpoint to retrieve all roles
             return Ok();
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetRoleById(string id)
-        {
-            // Call repository method to get role by ID and return response
-            return Ok();
-        }
 
         [HttpPost]
-        public async Task<IActionResult> AddRole([FromBody] Role role)
+        [Route("AddRole")]
+        public async Task<IActionResult> AddRole( Role role)
         {
-            // Call repository method to add a new role and return response
+            // Step 4: Implement API endpoint to add a new role
             return Ok();
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateRole(string id, [FromBody] Role role)
+        [HttpPut]
+        [Route("UpdateRole")]
+        public async Task<IActionResult> UpdateRole(string id, Role role)
         {
-            // Check if ID matches role PK, call update method, and return response
+            // Step 5: Implement API endpoint to update an existing role
             return Ok();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
+        [Route("DeleteRole")]
         public async Task<IActionResult> DeleteRole(string id)
         {
-            // Call repository method to delete role and return response
+            // Step 6: Implement API endpoint to soft delete a role
             return Ok();
         }
     }

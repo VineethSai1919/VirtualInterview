@@ -5,10 +5,10 @@ using virtualInterview.Repository.RolesRepositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<VirtualInterviewDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+// Step 1: Configure the database connection
 
-builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+// Step 2: Register RoleRepository for Dependency Injection
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

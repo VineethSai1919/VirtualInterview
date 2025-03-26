@@ -9,10 +9,14 @@ namespace virtualInterview.Repository.RolesRepositories
 {
     public interface IRoleRepository
     {
-        Task<IEnumerable<Role>> GetAllRoles(); // Implement method to retrieve all roles
-        Task<Role> GetRoleById(string roleId); // Implement method to get role by ID
-        Task AddRole(Role role); // Implement method to add a new role
-        Task UpdateRole(Role role); // Implement method to update an existing role
-        Task DeleteRole(string roleId); // Implement method to soft delete a role
+        //Step 1:Declare a method to retrieve all roles in paginator format
+
+        // Step 2: Declare a method to retrieve all roles
+
+        // Step 3: Declare a method to add a new role
+
+        // Step 4: Declare a method to update an existing role
+
+        // Step 5: Declare a method to soft delete a role
     }
 }
