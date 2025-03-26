@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using virtualInterview.EFCore;
-using virtualInterview.Models.Entities;
 
 namespace virtualInterview.Repository.RolesRepositories
 {

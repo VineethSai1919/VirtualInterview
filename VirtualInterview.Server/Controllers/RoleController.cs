@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using virtualInterview.Models.Entities;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using virtualInterview.Repository.RolesRepositories;
 
 namespace VirtualInterview.Server.Controllers
@@ -30,7 +30,7 @@ namespace VirtualInterview.Server.Controllers
 
         [HttpPost]
         [Route("AddRole")]
-        public async Task<IActionResult> AddRole( Role role)
+        public async Task<IActionResult> AddRole(EntityEntry role)
         {
             // Step 4: Implement API endpoint to add a new role
             return Ok();
@@ -38,7 +38,7 @@ namespace VirtualInterview.Server.Controllers
 
         [HttpPut]
         [Route("UpdateRole")]
-        public async Task<IActionResult> UpdateRole(string id, Role role)
+        public async Task<IActionResult> UpdateRole(string id, EntityEntry role)
         {
             // Step 5: Implement API endpoint to update an existing role
             return Ok();
