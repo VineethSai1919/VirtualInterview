@@ -1,3 +1,4 @@
-<div>
-  <router-outlet></router-outlet>
+<div *ngIf="showWelcomeMessage">
+  <h1>Welcome to the Virtual Interview!</h1>
 </div>
+<router-outlet></router-outlet>

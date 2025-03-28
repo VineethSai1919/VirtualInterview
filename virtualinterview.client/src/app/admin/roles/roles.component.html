@@ -1,1 +1,94 @@
-<p>roles works!</p>
+<!-- Container for the roles management section -->
+<div class="container-fluid" style="margin-top:80px">
+  <div class="mt-4 mx-4">
+    <!-- Toolbar for search and add role functionality -->
+    <p-toolbar class="my-toolbar">
+      <div class="container">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-12 text-end text-xsm-end">
+            <!-- Search input for filtering roles -->
+            <span class="p-input-icon-left">
+              <i class="fa fa-search"></i>
+              <input pInputText type="text" [(ngModel)]="searchRole" [minLength]="4" (input)="filterData()" placeholder="Search Role" class="search" title="Search Role (Enter atleast 3 characters)" style="width: 21rem; height: 45px; margin-right: 10px; margin-bottom: 3px;">
+            </span>
+            <!-- Button to open dialog for adding a new role -->
+            <p-button class="ms-2 add" (click)="showDialog()">Add Role</p-button>
+          </div>
+        </div>
+      </div>
+    </p-toolbar>
+  </div>
+
+  <!-- Table for displaying roles -->
+  <div class="card mt-3 mb-3 mx-4" style=" border: 1px solid #e5e7eb;  border-radius: 6px; gap: 0.5rem;">
+    <p-table #dt [loading]="primengTableHelper.isLoading" (onLazyLoad)="getroles($event)" [value]="primengTableHelper.records" [rows]="primengTableHelper.defaultRecordsCountPerPage" [paginator]="false" [lazy]="true" [responsive]="primengTableHelper.isResponsive" responsiveLayout="scroll" [resizableColumns]="primengTableHelper.resizableColumns" class="table table-bordered my-table">
+      <ng-template pTemplate="header">
+        <tr>
+          <th></th>
+          <th title="Role Name">Role Name</th>
+          <th title="Action">Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-termdata>
+        <tr>
+          <td></td>
+          <td title="Role Name" class="text-center">{{termdata.roleName}} </td>
+          <td class="text-center">
+            <!-- Icons for editing and deleting roles -->
+            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="editRole(termdata)"></i>
+            <i class="fa fa-trash ms-2" aria-hidden="true" (click)="delete(termdata)"></i>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="paginatorleft">
+        <span><b>Total Count: {{ roles?.length }}</b></span>
+      </ng-template>
+    </p-table>
+    <div class="primeng-no-data text-center mt-3" *ngIf="primengTableHelper.totalRecordsCount == 0">
+      <h6>No Records Found !</h6>
+    </div>
+    <p-paginator [rows]="primengTableHelper.defaultRecordsCountPerPage" #paginator (onPageChange)="getroles($event)" [totalRecords]="primengTableHelper.totalRecordsCount" [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage">
+    </p-paginator>
+    <div class="primeng-no-data m-3">
+      <h6 style="margin-top:-25px">Total Records : {{primengTableHelper.totalRecordsCount}}</h6>
+    </div>
+  </div>
+
+  <!-- Dialog for adding a new role -->
+  <p-dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <ng-template pTemplate="header">
+      <div class="inline-flex align-items-center justify-content-center gap-2">
+        <span class="font-bold white-space-nowrap"><b>Add Role</b></span>
+      </div>
+    </ng-template>
+    <form #myForm1="ngForm">
+      <div class="form-group row text-start">
+        <label for="Role" class="font-bold block  col-form-label"><b>Role</b></label>
+        <input required class="form-control ms-2 " [(ngModel)]="roleName" id="RoleName" type="text" placeholder="Enter Role" name="roleName" pInputText style="height:3rem;width:95%" data-hide-seconds>
+      </div>
+    </form>
+    <ng-template pTemplate="footer">
+      <p-button (click)="add()" label="Add" [disabled]="!myForm1.valid" pAutoFocus [autofocus]="true"></p-button>
+    </ng-template>
+  </p-dialog>
+
+  <!-- Dialog for editing an existing role -->
+  <p-dialog header="Header" [(visible)]="editVisible" [modal]="true" [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <ng-template pTemplate="header">
+      <div class="inline-flex align-items-center justify-content-center gap-2">
+        <span class="font-bold white-space-nowrap"><b>Update Role Name</b></span>
+      </div>
+    </ng-template>
+    <form #editForm="ngForm">
+      <div class="form-group row text-start">
+        <label for="Role" class="font-bold block  col-form-label"><b>Role</b></label>
+        <input required class="form-control ms-2 " [(ngModel)]="editRoleName" id="Role" type="text" name="roleName" pInputText style="height:3rem;width:95%" data-hide-seconds>
+      </div>
+    </form>
+    <ng-template pTemplate="footer">
+      <p-button (click)="edit()" label="Update" [disabled]="!editForm.valid" pAutoFocus [autofocus]="true"></p-button>
+    </ng-template>
+  </p-dialog>
+
+  <!-- Toast for displaying messages -->
+  <p-toast position="bottom-right"></p-toast>

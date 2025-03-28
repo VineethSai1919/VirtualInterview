@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+.p-button {
+  background: #428ab1 !important;
+  border: 1px solid #428ab1 !important;
+  border-radius: 10px !important
+}
+
+  .p-button.p-button-icon-only {
+    border-radius: 0px !important;
+  }
