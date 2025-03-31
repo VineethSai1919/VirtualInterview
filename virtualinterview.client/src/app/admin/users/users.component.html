@@ -1,1 +1,112 @@
-<p>users works!</p>
+<div class="container-fluid mt-5">
+    <div class="mt-4 mx-4">
+        <p-toolbar class="my-toolbar">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-12 text-end">
+                        <span class="p-input-icon-left">
+                            <i class="fa fa-search"></i>
+                            <!-- Search input for filtering users by role -->
+                            <input pInputText type="text" [(ngModel)]="searchRole" [minLength]="4" (input)="filterData()" placeholder="Search User" class="search" title="Search User (Enter at least 3 characters)" style="width: 21rem; height: 45px; margin-right: 10px; margin-bottom: 3px;">
+                        </span>
+                        <!-- Button to show dialog for adding a new user -->
+                        <p-button class="ms-2 add" (click)="showDialog()">Add User</p-button>
+                    </div>
+                </div>
+            </div>
+        </p-toolbar>
+    </div>
+    <div class="card mt-3 mb-3 mx-4" style="border: 1px solid #e5e7eb; border-radius: 6px; gap: 0.5rem;">
+        <!-- Table to display user profiles -->
+        <p-table #dt [loading]="primengTableHelper.isLoading" (onLazyLoad)="getUsers($event)" [value]="primengTableHelper.records" [rows]="primengTableHelper.defaultRecordsCountPerPage" [paginator]="false" [lazy]="true" [responsive]="primengTableHelper.isResponsive" responsiveLayout="scroll" [resizableColumns]="primengTableHelper.resizableColumns" class="table table-bordered my-table">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th></th>
+                    <th title="name">User Name</th>
+                    <th title="email">Email</th>
+                    <th title="Action">Action</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-termdata>
+                <tr>
+                    <td></td>
+                    <td title="name">{{termdata.userName}}</td>
+                    <td title="email">{{termdata.emailId}}</td>
+                    <td>
+                        <!-- Icons for editing and deleting user profiles -->
+                        <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="editLanguage(termdata)"></i>
+                        <i class="fa fa-trash ms-2" aria-hidden="true" (click)="delete(termdata)"></i>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="paginatorleft">
+                <span><b>Total Count: {{ ListUsers?.length }}</b></span>
+            </ng-template>
+        </p-table>
+        <div class="primeng-no-data text-center mt-3" *ngIf="primengTableHelper.totalRecordsCount == 0">
+            <h6>No Records Found!</h6>
+        </div>
+        <!-- Paginator for navigating through user profiles -->
+        <p-paginator [rows]="primengTableHelper.defaultRecordsCountPerPage" #paginator (onPageChange)="getUsers($event)" [totalRecords]="primengTableHelper.totalRecordsCount" [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage"></p-paginator>
+        <div class="primeng-no-data m-3">
+            <h6 style="margin-top:-25px">Total Records: {{primengTableHelper.totalRecordsCount}}</h6>
+        </div>
+    </div>
+</div>
+<!-- Dialog for adding a new user -->
+<p-dialog header="Add User" [(visible)]="visible" [modal]="true" [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <form #myForm1="ngForm">
+        <div class="form-group row text-start">
+            <label class="font-bold block col-form-label"><b>User Name</b></label>
+            <input required class="form-control ms-2" [(ngModel)]="userName" id="userName" type="text" placeholder="Enter Name" name="userName" pInputText style="height:3rem;width:95%">
+        </div>
+        <div class="form-group row text-start">
+            <label class="font-bold block col-form-label"><b>Email</b></label>
+            <input required class="form-control ms-2" [(ngModel)]="emailId" id="emailId" type="text" placeholder="Enter Email" name="emailId" pInputText style="height:3rem;width:95%">
+        </div>
+        <div class="form-group row text-start">
+            <label class="font-bold block col-form-label"><b>Password</b></label>
+            <input required class="form-control ms-2" [(ngModel)]="password" id="password" type="text" placeholder="Enter Password" name="password" pInputText style="height:3rem;width:95%">
+        </div>
+        <div class="form-group row text-start">
+            <label class="font-bold block col-form-label"><b>Phone Number</b></label>
+            <input required class="form-control ms-2" [(ngModel)]="phoneNumber" id="phoneNumber" type="text" placeholder="Enter Number" name="phoneNumber" pInputText style="height:3rem;width:95%">
+        </div>
+        <div class="form-group row text-start">
+            <label class="font-bold block col-form-label"><b>Role</b></label>
+            <p-dropdown class="col-12" id="role" [(ngModel)]="roleId" name="role" [options]="roleDTO" optionLabel="roleName" optionValue="pkRoleId" placeholder="Select Role" appendTo="body"></p-dropdown>
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <p-button (click)="add()" label="Add" [disabled]="!myForm1.valid" pAutoFocus [autofocus]="true"></p-button>
+    </ng-template>
+</p-dialog>
+<!-- Dialog for updating an existing user -->
+<p-dialog header="Update User" [(visible)]="editVisible" [modal]="true" [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <form #editForm="ngForm">
+        <div class="form-group row text-start">
+            <label class="font-bold block col-form-label"><b>User Name</b></label>
+            <input required class="form-control ms-2" [(ngModel)]="editUserName" id="editUserName" type="text" placeholder="Enter Name" name="editUserName" pInputText style="height:3rem;width:95%">
+        </div>
+        <div class="form-group row text-start">
+            <label class="font-bold block col-form-label"><b>Email</b></label>
+            <input required class="form-control ms-2" [(ngModel)]="editEmailId" id="editEmailId" type="text" placeholder="Enter Email" name="editEmailId" pInputText style="height:3rem;width:95%">
+        </div>
+        <div class="form-group row text-start">
+            <label class="font-bold block col-form-label"><b>Password</b></label>
+            <input required class="form-control ms-2" [(ngModel)]="editPassword" id="editPassword" type="text" placeholder="Enter Password" name="editPassword" pInputText style="height:3rem;width:95%">
+        </div>
+        <div class="form-group row text-start">
+            <label class="font-bold block col-form-label"><b>Phone Number</b></label>
+            <input required class="form-control ms-2" [(ngModel)]="editPhoneNumber" id="editPhoneNumber" type="text" placeholder="Enter Number" name="editPhoneNumber" pInputText style="height:3rem;width:95%">
+        </div>
+        <div class="form-group row text-start">
+            <label class="font-bold block col-form-label"><b>Role</b></label>
+            <p-dropdown class="col-12" id="editRole" [(ngModel)]="editRoleId" name="editRole" [options]="roleDTO" optionLabel="roleName" optionValue="pkRoleId" placeholder="Select Role" appendTo="body"></p-dropdown>
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <p-button (click)="edit()" label="Update" [disabled]="!editForm.valid" pAutoFocus [autofocus]="true"></p-button>
+    </ng-template>
+</p-dialog>
+<p-toast position="bottom-right"></p-toast>

@@ -2,10 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Paginator } from 'primeng/paginator';
 import { Table } from 'primeng/table';
+import { AppComponentBase } from '../../Shared/app-base.service';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrl: './users.component.css'
+  styleUrl: './users.component.css',
+  providers: [MessageService]
 })
 export class UsersComponent  extends AppComponentBase {
   @ViewChild('dt', { static: true }) dataTable!: Table;
@@ -16,7 +18,7 @@ export class UsersComponent  extends AppComponentBase {
   password!: string;
   phoneNumber!: string;
   roleId!: string;
-  roleDTO: RoleDTO[] = [];
+  roleDTO: any[] = [];
   visible: boolean = false;
   editVisible: boolean = false;
   searchRole!: string;
@@ -28,7 +30,7 @@ export class UsersComponent  extends AppComponentBase {
   editPhoneNumber: any;
   editRoleId: any;
 
-  constructor(private messageService: MessageService, private userProfileService: UserProfileClient, private rolesService: RolesClient) {
+  constructor(private messageService: MessageService) {
     super();
   }
 
