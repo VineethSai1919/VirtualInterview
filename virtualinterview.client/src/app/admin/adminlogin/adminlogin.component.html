@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-2">
+        <!-- Empty column for spacing -->
+    </div>
+    <div class="col-8" style="padding-top:150px">
+        <div class="row">
+            <div class="col-xl-6 co-lg-6 col-sm-12">
+                <!-- Image section -->
+                <img src="../../assets/Images/img-12.png" class="imageData" style="max-width: 97%;" />
+            </div>
+            <div class="col-xl-6 co-lg-6 col-sm-12">
+                <div class="login-container">
+                    <div class="login-box">
+                        <!-- Login form -->
+                        <form>
+                            <!-- Email input field -->
+                            <label for="email" style="display: block; text-align: left; margin-bottom: 5px;">Email Id</label>
+                            <input type="email" [(ngModel)]="email" id="email" name="email" placeholder="Enter EmailId" required>
+
+                            <!-- Password input field -->
+                            <label for="pass" style="display: block; text-align: left; margin-bottom: 5px;">Password</label>
+                            <div class="password-container">
+                                <input type="password" name="pass" [(ngModel)]="password" id="pass" placeholder="Enter Password" required>
+                                <span class="toggle-password" (click)="togglePasswordVisibility()"><i class="{{ isPasswordVisible ? 'fa fa-eye-slash' : 'fa fa-eye' }}"></i></span>
+                            </div>
+                           
+                            <!-- Login button -->
+                            <button type="submit" (click)="Login()" class="btn-login">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-2">
+        <!-- Empty column for spacing -->
+    </div>
+    <!-- Toast notification position -->
+    <p-toast position="bottom-right"></p-toast>
+</div>

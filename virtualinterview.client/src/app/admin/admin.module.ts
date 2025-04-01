@@ -6,7 +6,6 @@ import { AdminComponent } from './admin.component';
 import { AdminNavMenuComponent } from './admin-nav-menu/admin-nav-menu.component';
 import { RolesComponent } from './roles/roles.component';
 import { RouterModule } from '@angular/router';
-import { UsersComponent } from './users/users.component';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -15,6 +14,8 @@ import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
+import { UsersComponent } from './users/users.component';
+import { AdminloginComponent } from './adminlogin/adminlogin.component';
 
 
 @NgModule({
@@ -22,8 +23,10 @@ import { ToolbarModule } from 'primeng/toolbar';
     AdminComponent,
     AdminNavMenuComponent,
     RolesComponent,
-    UsersComponent
-  ],
+    UsersComponent,
+    AdminloginComponent,
+
+    ],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -35,7 +38,6 @@ import { ToolbarModule } from 'primeng/toolbar';
     PaginatorModule,
     ToastModule,
     InputTextModule,
-    AdminRoutingModule
   ]
 })
 export class AdminModule { }
