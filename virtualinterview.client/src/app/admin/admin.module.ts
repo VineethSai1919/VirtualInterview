@@ -6,13 +6,15 @@ import { AdminComponent } from './admin.component';
 import { AdminNavMenuComponent } from './admin-nav-menu/admin-nav-menu.component';
 import { RolesComponent } from './roles/roles.component';
 import { RouterModule } from '@angular/router';
+import { SkillsComponent } from './skills/skills.component';
 
 
 @NgModule({
   declarations: [
     AdminComponent,
     AdminNavMenuComponent,
-    RolesComponent
+    RolesComponent,
+    SkillsComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,7 @@ import { RouterModule } from '@angular/router';
         path: '', component: AdminComponent,
         children: [
           { path: 'roles', component: RolesComponent },
-
+          {path:'skills', component:SkillsComponent}
         ]
       }
     ])
