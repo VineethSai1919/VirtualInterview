@@ -11,33 +11,19 @@ import { LoginService } from '../../Shared/login.service';
 export class AdminloginComponent {
   email: string = '';
   password: string = '';
-  loginDTO: any;
   role: string = "";
-  errorMessage!: any;
-  error!: boolean;
-  roles: string[];
-  loginRole: any;
+  roles: string[] = ["admin", "user"];
   isPasswordVisible: boolean = false;
 
-  constructor(private loginService: LoginService, private route: Router, private messageService: MessageService) {
-    this.roles = []
-    this.roles.push("admin", "user")
-  }
+  constructor(
+    private loginService: LoginService,
+    private route: Router,
+    private messageService: MessageService
+  ) { }
 
-  ngOnInit(): void {
+  // Handles the login process
+  Login() {  }
 
-  }
-
-  Login() {
-    /*if (this.loginRole == "admin") {*/
-    if (this.email.trim() != null || this.email.trim() != "") {
-      this.loginDTO.emailId = this.email.trim();
-      this.loginDTO.password = this.password.trim();
-    }
-  }
-  togglePasswordVisibility(): void {
-    const passwordInput = document.getElementById('pass') as HTMLInputElement;
-    this.isPasswordVisible = !this.isPasswordVisible;
-    passwordInput.type = this.isPasswordVisible ? 'text' : 'password';
-  }
+  // Toggles the visibility of the password input field
+  togglePasswordVisibility(): void {  }
 }
