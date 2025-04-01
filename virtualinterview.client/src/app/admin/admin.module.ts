@@ -16,6 +16,7 @@ import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { UsersComponent } from './users/users.component';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
+import { SkillsComponent } from './skills/skills.component';
 
 
 @NgModule({
@@ -25,8 +26,8 @@ import { AdminloginComponent } from './adminlogin/adminlogin.component';
     RolesComponent,
     UsersComponent,
     AdminloginComponent,
-
-    ],
+        SkillsComponent,
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -37,7 +38,8 @@ import { AdminloginComponent } from './adminlogin/adminlogin.component';
     DialogModule,
     PaginatorModule,
     ToastModule,
-    InputTextModule,
+      InputTextModule,
+      AdminRoutingModule
   ]
 })
 export class AdminModule { }
