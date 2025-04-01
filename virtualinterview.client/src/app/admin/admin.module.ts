@@ -14,6 +14,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
+import { SkillsComponent } from './skills/skills.component';
 
 
 @NgModule({
@@ -34,7 +35,16 @@ import { ToolbarModule } from 'primeng/toolbar';
     PaginatorModule,
     ToastModule,
     InputTextModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    RouterModule.forChild([
+      {
+        path: '', component: AdminComponent,
+        children: [
+          { path: 'roles', component: RolesComponent },
+          { path: 'skills', component: SkillsComponent }
+        ]
+      }
+    ])
   ]
 })
 export class AdminModule { }
