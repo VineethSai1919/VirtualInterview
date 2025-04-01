@@ -5,13 +5,15 @@ import { RolesComponent } from './roles/roles.component';
 import { UsersComponent } from './users/users.component';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { AuthGuard } from '../Shared/authguard.service';
+import { SkillsComponent } from './skills/skills.component';
 
 const routes=[
   {
     path: '', component: AdminComponent,
     children: [
       { path: 'roles', component: RolesComponent, canActivate:[AuthGuard] },
-      { path: 'users', component: UsersComponent, canActivate:[AuthGuard] },
+      { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+      { path: 'skills', component: SkillsComponent,canActivate:[AuthGuard] },
       { path: 'adminlogin', component: AdminloginComponent },
 
     ]

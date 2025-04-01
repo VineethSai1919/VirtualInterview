@@ -10,14 +10,17 @@
 
     <!-- Navigation Links -->
     <div class="collapse navbar-collapse" [ngClass]="{'show': isNavbarOpen}" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/admin/roles']" routerLinkActive="active" (click)="closeNavBar()">Roles</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/admin/users']" routerLinkActive="active" (click)="closeNavBar()">Users</a>
-        </li>
-      </ul>
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/admin/roles']" routerLinkActive="active" (click)="closeNavBar()">Roles</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/admin/users']" routerLinkActive="active" (click)="closeNavBar()">Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/admin/skills']" routerLinkActive="active" (click)="closeNavBar()">Skills</a>
+            </li>
+        </ul>
 
       <!-- Logout Button (Float Right) -->
       <ul class="navbar-nav">

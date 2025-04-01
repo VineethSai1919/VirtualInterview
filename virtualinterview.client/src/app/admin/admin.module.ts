@@ -22,11 +22,11 @@ import { SkillsComponent } from './skills/skills.component';
 @NgModule({
   declarations: [
     AdminComponent,
+    SkillsComponent,
     AdminNavMenuComponent,
     RolesComponent,
     UsersComponent,
-    AdminloginComponent,
-        SkillsComponent,
+    AdminloginComponent
   ],
   imports: [
     CommonModule,
@@ -38,8 +38,8 @@ import { SkillsComponent } from './skills/skills.component';
     DialogModule,
     PaginatorModule,
     ToastModule,
-      InputTextModule,
-      AdminRoutingModule
+    InputTextModule,
+    AdminRoutingModule
   ]
 })
 export class AdminModule { }
