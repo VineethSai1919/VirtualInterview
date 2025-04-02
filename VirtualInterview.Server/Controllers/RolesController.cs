@@ -6,7 +6,7 @@ namespace VirtualInterview.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoleController : ControllerBase
+    public class RolesController : ControllerBase
     {
         private readonly IRoleRepository _roleRepository;
 
