@@ -1,0 +1,305 @@
+<div class="container-fluid" style="margin-top:80px">
+    <div class="mt-4 mx-4">
+        <p-toolbar class="my-toolbar">
+            <div class="container" style="margin:0px">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-12 text-end text-xsm-end">
+                        <p-calendar class="me-3" [(ngModel)]="fromDate" placeholder="Select FromDate" [showIcon]="true" [showClear]="true" [showTime]="true" [timeOnly]="false" [timeInput]="true" name="FromDate" (ngModelChange)="onDateStatus($event,'FromDate')" [style]="{width: '15%'}"></p-calendar>
+                        <p-calendar class="me-3" [(ngModel)]="toDate" placeholder="Select ToDate" [showIcon]="true" [showClear]="true" [showTime]="true" [timeOnly]="false" [timeInput]="true" name="ToDate" (ngModelChange)="onDateStatus($event,'ToDate')" [style]="{width: '15%'}"></p-calendar>
+                        <p-dropdown class="me-3 text-start" [options]="allSkills"
+                                    [(ngModel)]="selectedAllSkill"
+                                    optionLabel="name"
+                                    (onChange)="FilterSkill()"
+                                    [filter]="true"
+                                    filterBy="name"
+                                    [showClear]="true"
+                                    placeholder="Select a Skill">
+                            <ng-template pTemplate="selectedItem" let-selectedOption>
+                                <div class="flex align-items-center gap-2">
+                                    <div>{{ selectedOption.name }}</div>
+                                </div>
+                            </ng-template>
+                            <ng-template let-skill pTemplate="item">
+                                <div class="flex align-items-center gap-2">
+                                    <div>{{ skill.name }}</div>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                        <p-dropdown class="me-3" id="Status" [(ngModel)]="Status" name="Status" [options]="StatusType" placeholder="Select Status" (onChange)="onTypeChangeStatus($event)" appendTo="body"></p-dropdown>
+                        <span class="p-input-icon-left me-2">
+                            <i class="fa fa-search"></i>
+                            <input pInputText type="text" [(ngModel)]="searchbyTerm" (input)="filterData()" placeholder="Search by Name or Email or ScheduleName" title="Search by Name or Email or ScheduleName" style="height: 45px; margin-right: 14px; margin-bottom: 3px;">
+                        </span>
+                        <p-button class="add ms-2" (click)="addListOfCandidates()">Bulk Schedule</p-button>
+                    </div>
+                </div>
+            </div>
+        </p-toolbar>
+    </div>
+
+    <div class="card mt-3 mb-3 mx-4" style=" border: 1px solid #e5e7eb;  border-radius: 6px; gap: 0.5rem;">
+        <p-table #dt [loading]="primengTableHelper.isLoading" (onLazyLoad)="GetScheduledCandidates($event)" [value]="primengTableHelper.records" [rows]="primengTableHelper.defaultRecordsCountPerPage" [paginator]="false" [lazy]="true" [responsive]="primengTableHelper.isResponsive" responsiveLayout="scroll" [resizableColumns]="primengTableHelper.resizableColumns" class="table table-bordered my-table">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th title="Schedule Name">&nbsp;Schedule Name</th>
+                    <th title="Candidate Name">  Candidate Name</th>
+                    <th title="Email">Email</th>
+
+                    <th title="Date">FromDate</th>
+                    <th title="FromTime">ToDate</th>
+                    <th title="Action" *ngIf="Status !=='Completed'">Action</th>
+                    <th title="Result" *ngIf="Status == 'Completed' ">Results</th>
+                    <th title="Score" *ngIf="Status === 'Completed'">Score</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-termdata>
+                <tr>
+                    <td title="ScheduleName" (click)="showResultForSchedule(termdata)"
+                        style="cursor:pointer">
+                        &nbsp;{{ termdata.scheduleName || 'N/A' }}
+                    </td>
+
+                    <td title="Candidate Name">  {{termdata.candidateName || 'N/A' }}</td>
+                    <td title="Email">{{termdata.emailId}}</td>
+                    <td title="FromDate">{{ termdata.date ? (termdata.date + 'Z' | date:'d/M/yyyy, H:mm') : 'N/A' }}</td>
+                    <td title="ToDate">{{ termdata.toDate ? (termdata.toDate + 'Z' | date:'d/M/yyyy, H:mm'): 'N/A' }}</td>
+                    <td title="Action" *ngIf="Status !=='Completed'">
+                        <i class="fa fa-edit" aria-hidden="true" style="cursor:pointer" (click)="EditSchedule(termdata)"></i>
+                    </td>
+                    <td title="Result" *ngIf="Status == 'Completed' ">
+                        <p-button (onClick)="botResults(termdata)">View Result</p-button>
+                    </td>
+                    <td title="Score" *ngIf="Status === 'Completed' "> <h5>{{termdata.score? termdata.score:'N/A'}}</h5> </td>
+
+
+                </tr>
+            </ng-template>
+        </p-table>
+        <div class="primeng-no-data text-center mt-3" *ngIf="primengTableHelper.totalRecordsCount == 0">
+            <h6>No Records Found !</h6>
+        </div>
+        <p-paginator [rows]="primengTableHelper.defaultRecordsCountPerPage" #paginator (onPageChange)="GetScheduledCandidates($event)" [totalRecords]="primengTableHelper.totalRecordsCount" [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage">
+        </p-paginator>
+        <div class="primeng-no-data m-3">
+            <h6 style="margin-top:-25px">Total Records : {{primengTableHelper.totalRecordsCount}}</h6>
+        </div>
+
+    </div>
+</div>
+
+<div class="text-center ">
+    <p-dialog header="Header" [(visible)]="visibleCanidates" [modal]="true" [draggable]="false" [style]="{ 'width': '60%', 'height': '20rem', 'margin-bottom': '25rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+        <ng-template pTemplate="header">
+            <div class="inline-flex align-items-center justify-content-center gap-2">
+                <b><span style="font-size:20px">Add Candidates</span></b>
+            </div>
+        </ng-template>
+
+        <form #myFormCandidate="ngForm" [ngClass]="{'form': (selectedExams?.length === 0 && ListOfCandidates?.length === 0), 'formData': selectedExams?.length !== 0 || ListOfCandidates?.length !== 0}">
+
+            <div class="form-group row text-start align-items-center">
+                <div class="text-start">
+                    <div class="time-wrapper mr-2">
+                        <div class="input-wrapper mt-3">
+                            <label for="scheduleName" class="font-bold mt-1 col-form-label"><b>Schedule Name</b><span class="text-danger ml-1">*</span></label>
+                            <div class="d-flex flex-grow-1 align-items-center">
+                                <input class="form-control flex-grow-1" required [(ngModel)]="scheduleName" id="scheduleName" type="text" placeholder="Enter Schedule Name" name="scheduleName" style="height:3rem;">
+
+                            </div>
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="buttondisplay" class="font-bold block mt-4"><b>FromDate</b><span class="text-danger ml-1">*</span></label>
+                            <div class="row">
+                                <p-calendar required [(ngModel)]="ScheduledFromDate" placeholder="Select Date" [showIcon]="true" [showTime]="true" [timeOnly]="false" [timeInput]="true" name="ScheduledDate"></p-calendar>
+
+                            </div>
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="buttondisplay" class="font-bold block mt-4"><b>ToDate</b><span class="text-danger ml-1">*</span></label>
+                            <div class="row">
+                                <p-calendar required [style.padding-right]="'2.5px'" [(ngModel)]="ScheduledToDate" placeholder="Select Date" [showIcon]="true" [showTime]="true" [timeOnly]="false" [timeInput]="true" name="ScheduledDate"></p-calendar>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row text-start mt-3 align-items-center">
+            </div>
+            <div class="form-group row text-start align-items-center">
+                <div class="input-wrapper mb-2">
+                    <label for="skill" class="font-bold col-form-label">
+                        <b>Skills </b>
+                    </label>
+                    <div class="d-flex flex-grow-1 align-items-center">
+                        <p-multiSelect [options]="skills"
+                                       [(ngModel)]="selectedSkill"
+                                       optionLabel="name"
+                                       [filter]="true"
+                                       filterBy="name"
+                                       [showClear]="true"
+                                       placeholder="Select a Skill"
+                                       id="skills" name="skills"
+                                       [style]="{width:'400px'}" />
+
+                    </div>
+                </div>
+                <div class=" input-wrapper mb-2">
+                    <label for="duration" class="font-bold block  col-form-label"><b>Duration(mins)</b><span class="text-danger ml-1">*</span></label>
+                    <div>
+                        <input class="form-control html-duration-picker" required id="duration" type="text" placeholder="Enter Exam Duration" [(ngModel)]="Duration" name="Duration" pInputText style="height:3rem" data-hide-seconds>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <form #fileForm="ngForm" (ngSubmit)="onSubmit(fileForm)">
+                <div class="form-group row text-start align-items-center">
+                    <div class="input-wrapper">
+                        <label for="email" class="font-bold mt-2 col-form-label">
+                            <b>Import Email file:</b><span class="text-danger ml-1">*</span>
+                        </label>
+                        <div class="form-group d-flex align-items-center">
+                            <div class="mb-1 flex-grow-1">
+                                <div class="input-group">
+                                    <input class="form-control" title="Import file" placeholder="Import file" type="file" id="fileInput" name="fileInput" (change)="onFileChange($event)">
+                                </div>
+                            </div>
+                            <button class="btn btn-primary ml-2" type="submit" title="Download Sample File" (click)="createDownloadExport()">Download sample</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="form-group row text-start align-items-center">
+                <div class=" input-wrapper ">
+                    <label for="emailSubject" class="font-bold block col-form-label"><b>Email Subject</b><span class="text-danger ml-1">*</span></label>
+                    <div>
+                        <input class="form-control" required id="emailSubject" type="text" placeholder="Enter Email Subject" [(ngModel)]="emailSubject" name="emailSubject" pInputText style="height:3rem" data-hide-seconds>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="text-end p-2">
+            <p-button (click)="AddCandidates()" label="Submit" pAutoFocus [autofocus]="true" [disabled]="!myFormCandidate.valid"></p-button>
+        </div>
+    </p-dialog>
+</div>
+<div class="text-center ">
+    <p-dialog header="Header" [(visible)]="visibleSchedule" [modal]="true" [draggable]="false" [style]="{ 'width': '60%', 'height': '20rem', 'margin-bottom': '25rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+        <ng-template pTemplate="header">
+            <div class="inline-flex align-items-center justify-content-center gap-2">
+                <b><span style="font-size:20px">Edit Schedule</span></b>
+            </div>
+        </ng-template>
+
+        <form #myFormCandidate="ngForm" [ngClass]="{'form': (selectedExams?.length === 0 && ListOfCandidates?.length === 0), 'formData': selectedExams?.length !== 0 || ListOfCandidates?.length !== 0}">
+            <div class="form-group row text-start align-items-center mb-3">
+                <div class="text-start">
+                    <div class="time-wrapper">
+                        <div class="input-wrapper">
+                            <label for="scheduleName" class="font-bold col-form-label"><b>Schedule Name</b></label>
+                            <div class="mt-1">
+                                <input class="form-control flex-grow-1" required [(ngModel)]="scheduleName" id="scheduleName" type="text" placeholder="Enter Schedule Name" name="scheduleName" style="height:3rem;">
+                            </div>
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="buttondisplay" class="font-bold block mt-2"><b>FromDate</b></label>
+                            <div class="row">
+                                <p-calendar [style]="{width: '100%'}" [(ngModel)]="ScheduledFromDate" placeholder="Select FromDate" [showIcon]="true" [showTime]="true" [timeOnly]="false" [timeInput]="true" name="ScheduledFromDate"></p-calendar>
+
+                            </div>
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="buttondisplay" class="font-bold block mt-2"><b>ToDate</b></label>
+                            <div class="row">
+                                <p-calendar [style]="{width: '100%'}" [(ngModel)]="ScheduledToDate" placeholder="Select ToDate" [showIcon]="true" [showTime]="true" [timeOnly]="false" [timeInput]="true" name="ScheduledToDate"></p-calendar>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group row text-start align-items-center">
+
+                <div class="input-wrapper mb-2">
+                    <label for="skill" class="font-bold col-form-label">
+                        <b>Skills </b>
+                    </label>
+                    <div class="d-flex flex-grow-1 align-items-center">
+                        <p-multiSelect [options]="editSkills"
+                                       [(ngModel)]="editSelectedSkill"
+                                       optionLabel="name"
+                                       [filter]="true"
+                                       filterBy="name"
+                                       [showClear]="true"
+                                       placeholder="Select a Skill"
+                                       id="editSkills" name="editSkills"
+                                       [style]="{width:'400px'}" />
+
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                    <label for="candiateName" class="font-bold  col-form-label"><b>Password</b></label>
+                    <div class="d-flex flex-grow-1 align-items-center" style="padding-right: 0px;">
+                        <input readonly class="form-control flex-grow-1" [(ngModel)]="candiatePassword" id="candiateName" type="text" placeholder="Password" name="Password" style="height:3rem;">
+                    </div>
+                </div>
+
+                <div class=" input-wrapper ">
+                    <label for="duration" class="font-bold block col-form-label"><b>Duration</b></label>
+                    <div>
+                        <input class="form-control html-duration-picker" required id="duration" type="text" placeholder="Enter Exam Duration" [(ngModel)]="Duration" name="Duration" pInputText style="height:3rem" data-hide-seconds>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row text-start align-items-center mt-3">
+                <div class=" input-wrapper ">
+                    <label for="emailSubject" class="font-bold block mt-2 col-form-label"><b>Email Subject</b></label>
+                    <div>
+                        <input class="form-control" id="emailSubject" type="text" placeholder="Enter Email Subject" [(ngModel)]="emailSubject" name="emailSubject" pInputText style="height:3rem" data-hide-seconds>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </form>
+        <div class="text-end p-2">
+            <p-button (click)="EditScheduleData()" label="Submit" pAutoFocus [autofocus]="true" [disabled]="!myFormCandidate.valid"></p-button>
+        </div>
+
+
+    </p-dialog>
+</div>
+
+<p-dialog header="Video Preview" [(visible)]="displayVideoDialog" [modal]="true" [style]="{width: '50vw'}">
+    <video #videoPlayer controls [src]="selectedVideoUrl" style="width: 100%;">
+        Your browser does not support the video tag.
+    </video>
+</p-dialog>
+
+<p-dialog header="Overall AI Feedback" [(visible)]="displayBotFeedback" [modal]="true" [style]="{width: '50vw'}" (onShow)="resetVideo()">
+    <div *ngIf="selectedBotFeedbackUrl">
+        <video #botPlayer controls autoplay [src]="selectedBotFeedbackUrl" style="width: 100%;">
+            Your browser does not support the video tag.
+
+        </video>
+    </div>
+    <div *ngIf="!selectedBotFeedbackUrl" class="text-center" style="height: 10rem">
+        <h4>Sorry, Video not generated</h4>
+    </div>
+</p-dialog>
+
+<p-dialog header="Result" [(visible)]="visibleResult" [modal]="true" [style]="{width: '80%', zIndex: 1102, margin: '0px',position: 'fixed',left: '154.935px', top: '5.0026px'}" (onShow)="resetVideo()">
+    <app-review-interview [Id]="scheduleIdForReviewInterview" [url]="feedbackUrl"></app-review-interview>
+</p-dialog>
+
+
+<p-toast position="bottom-right"></p-toast>

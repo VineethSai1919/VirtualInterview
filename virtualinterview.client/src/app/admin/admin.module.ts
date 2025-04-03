@@ -20,6 +20,7 @@ import { SkillsComponent } from './skills/skills.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { SsmleditorComponent } from './questions/ssmleditor/ssmleditor.component';
 import { CheckboxModule } from 'primeng/checkbox';
+import { SchedulesComponent } from './schedules/schedules.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { CheckboxModule } from 'primeng/checkbox';
     UsersComponent,
     AdminloginComponent,
     QuestionsComponent,
-    SsmleditorComponent
+    SsmleditorComponent,
+    SchedulesComponent
   ],
   imports: [
     CommonModule,
