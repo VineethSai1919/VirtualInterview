@@ -1,0 +1,187 @@
+<!-- Main container for the questions component -->
+<div class="container-fluid" style="margin-top:80px">
+    <div class="mt-4 mx-4">
+        <!-- Toolbar for actions like filtering, searching, adding, and deleting questions -->
+        <p-toolbar>
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-12 text-end text-xsm-end">
+                        <!-- Dropdown for selecting a skill to filter questions -->
+                        <p-dropdown [options]="skills"
+                                    [(ngModel)]="selectedSkill"
+                                    optionLabel="name"
+                                    (onChange)="FilterSkill()"
+                                    [filter]="true"
+                                    filterBy="name"
+                                    [showClear]="true"
+                                    placeholder="Select a Skill">
+                            <ng-template pTemplate="selectedItem" let-selectedOption>
+                                <div class="flex align-items-center gap-2">
+                                    <div>{{ selectedOption.name }}</div>
+                                </div>
+                            </ng-template>
+                            <ng-template let-skill pTemplate="item">
+                                <div class="flex align-items-center gap-2">
+                                    <div>{{ skill.name }}</div>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                        <!-- Input for searching questions by text -->
+                        <span class="p-input-icon-left ms-2">
+                            <i class="fa fa-search"></i>
+                            <input pInputText type="text" [(ngModel)]="searchbyQuestion" [minLength]="4" (input)="filterData()" placeholder="Search by Text" class="search" title="Search by Question (Enter atleast 3 characters)" style="width: 21rem; height: 45px; margin-right: 10px; margin-bottom: 3px;">
+                        </span>
+                        <!-- Button to add a new question -->
+                        <p-button class="ms-2" (click)="addQuestions()">Add Question</p-button>
+                        <!-- Button to delete selected questions -->
+                        <p-button class="delete ms-2" (click)="delete()" [disabled]="selectedItems.length==0" severity="danger">Delete</p-button>
+                    </div>
+                </div>
+            </div>
+        </p-toolbar>
+    </div>
+
+    <!-- Table displaying the list of questions -->
+    <div class="card mt-3 mb-3 mx-4" style=" border: 1px solid #e5e7eb;  border-radius: 6px; gap: 0.5rem;">
+        <p-table #dt [loading]="primengTableHelper.isLoading" (onLazyLoad)="getQuestions($event)" [value]="primengTableHelper.records" [rows]="primengTableHelper.defaultRecordsCountPerPage" [paginator]="false" [lazy]="true" [responsive]="primengTableHelper.isResponsive" responsiveLayout="scroll" [resizableColumns]="primengTableHelper.resizableColumns" class="table table-bordered my-table">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th> </th>
+                    <th>Question</th>
+                    <th>Action</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-termdata>
+                <tr>
+                    <td class="text-center">
+                        <!-- Checkbox for selecting a question -->
+                        <p-checkbox *ngIf="checked" [(ngModel)]="checked" name="checkedPage" id="checkedPage" [binary]="true" inputId="binary"></p-checkbox>
+                        <p-checkbox *ngIf="!checked" [binary]="true" inputId="binary" (click)="selectPage(termdata)"></p-checkbox>
+                    </td>
+                    <td title="Question">
+                        {{ termdata.displayText }}
+                        <b class="ms-1">
+                            <span *ngIf="termdata.questionType == 1">
+                                <!-- Icons to expand/collapse question details -->
+                                <i class="pi pi-angle-down" *ngIf="!termdata.isOpen" (click)="ViewQuestionDetails(termdata)"></i>
+                                <i class="pi pi-angle-up" *ngIf="termdata.isOpen" (click)="CloseQuestionDetails(termdata)"></i>
+                            </span>
+                        </b>
+                        <!-- Section to display question details -->
+                        <div *ngIf="selectedQuestion === termdata && termdata.isOpen" class="mt-2">
+                            <div>
+                                <h6><b>Explanation: </b>&nbsp;{{termdata.expectedAnswer}}</h6>
+                            </div>
+                        </div>
+                    </td>
+                    <td><i class="fa fa-pencil-square-o" (click)="edit(termdata)"></i></td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <!-- Message displayed when no records are found -->
+        <div class="primeng-no-data text-center mt-3" *ngIf="primengTableHelper.totalRecordsCount == 0">
+            <h6>No Records Found !</h6>
+        </div>
+        <!-- Paginator for navigating through pages of questions -->
+        <p-paginator [rows]="primengTableHelper.defaultRecordsCountPerPage" #paginator (onPageChange)="getQuestions($event)" [totalRecords]="primengTableHelper.totalRecordsCount" [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage">
+        </p-paginator>
+        <div class="primeng-no-data m-3">
+            <h6 style="margin-top:-25px">Total Records : {{primengTableHelper.totalRecordsCount}}</h6>
+        </div>
+    </div>
+
+    <!-- Dialog for editing a question -->
+    <p-dialog header="Edit Question" [(visible)]="visibleEdit" [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ 'width': '90%' }" [draggable]="false" [resizable]="false">
+        <div>
+            <div class="row align-items-center mt-2 ms-1">
+                <div class="col-auto">
+                    <label for="Skill" class="form-label mb-0" style="font-weight: 500;">Skill:</label>
+                </div>
+                <div class="col text-start">
+                    <!-- Dropdown for selecting a skill to edit -->
+                    <p-dropdown [options]="editSkills"
+                                [(ngModel)]="editSelectedSkill"
+                                optionLabel="name"
+                                [filter]="true"
+                                filterBy="name"
+                                [showClear]="true"
+                                placeholder="Select a Skill">
+                        <ng-template pTemplate="selectedItem" let-selectedOption>
+                            <div class="flex align-items-center gap-2">
+                                <div>{{ selectedOption.name }}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-skill pTemplate="item">
+                            <div class="flex align-items-center gap-2">
+                                <div>{{ skill.name }}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
+
+            <div class=" row mt-2 ms-1">
+                <label for="Question" class="text-start mb-2 mt-3 ms-3  pl-0" style="font-weight: 500;">Question:</label>
+                <div style="height:450px;">
+                    <p>
+                        <!-- Editor for editing the question -->
+                        <app-ssmleditor [childData]="{question: editQuestion, ssmlQuestion: editssmlQuestion}" (dataChanged)="handleDataChange($event)" class="w-100"></app-ssmleditor>
+                    </p>
+                </div>
+            </div>
+
+            <div class=" row mt-2 ms-1">
+                <label for="Question" class="text-start mb-2 mt-3 ms-3 pl-0" style="font-weight: 500;">
+                    Enter Explanation:
+                </label>
+                <div class=" mt-2">
+                    <!-- Textarea for entering the explanation of the question -->
+                    <textarea required id="ExpectedAnswer" type="text" style="width:98%" [(ngModel)]="expectedAnswer" name="ExpectedAnswer" pInputText></textarea>
+                </div>
+            </div>
+        </div>
+        <ng-template pTemplate="footer">
+            <div class="text-end p-2">
+                <!-- Button to save the edited question -->
+                <p-button class="mt-2" (click)="updateQuestion()">Save</p-button>
+            </div>
+        </ng-template>
+    </p-dialog>
+
+    <!-- Dialog for adding a new question -->
+    <div class="text-center">
+        <p-dialog header="Header" [(visible)]="addQuestion" [modal]="true" [draggable]="false">
+            <ng-template pTemplate="header">
+                <div class="inline-flex align-items-center justify-content-center gap-2">
+                    <b><span style="font-size:20px">Add Question for {{selectedSkill?.name}}</span></b>
+                </div>
+            </ng-template>
+
+            <form #questionForm="ngForm">
+                <div>
+                    <div class="form-group row mt-3" style="height:32rem">
+                        <label for="Question" class="col-sm-2 ms-3 text-start col-form-label" style="font-weight: 500;">Enter Question :</label>
+                        <div class="col-sm-8 mt-2 text-start">
+                            <!-- Editor for entering the new question -->
+                            <app-ssmleditor (dataChanged)="handleDataChange($event)"></app-ssmleditor>
+                        </div>
+                    </div>
+                    <div class="form-group row mt-3">
+                        <label for="Question" class="col-sm-2 text-start col-form-label" style="font-weight: 500;">Enter Answer :</label>
+                        <div class="col-sm-8 mt-2 text-start">
+                            <!-- Textarea for entering the answer of the new question -->
+                            <textarea required class=" ms-3" id="FaceToFaceAnswer" type="text" style="width:103%" [(ngModel)]="expectedAnswer" name="FaceToFaceAnswer" pInputText></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <ng-template pTemplate="footer">
+                <!-- Button to add the new question -->
+                <p-button class="submit-button p-2" type="submit" (click)="createQuestion()" [disabled]="!questionForm.valid || isValisateSSML" label="Add Question"></p-button>
+            </ng-template>
+        </p-dialog>
+    </div>
+
+    <!-- Toast for displaying messages -->
+    <p-toast position="bottom-right"></p-toast>
+</div>

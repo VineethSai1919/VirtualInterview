@@ -1,0 +1,31 @@
+<div class="container spacing-default" style="height: 20px; width: 101%; padding-left: 0px">
+    <div class="start-page card">
+        <div class="card-body">
+            <div class="spacing-tb">
+                <div class="toolbar d-flex flex-wrap align-items-center mb-3">
+                    <button type="button" class="btn btn-primary action-button" (click)="emphasis()" title="Emphasis the selected text"><i class="fas fa-bold" aria-hidden="true"></i> Emphasis</button>
+                    <button type="button" class="btn btn-info action-button" (click)="insertDelay()" title="Insert a 300 ms delay"><i class="fas fa-clock" aria-hidden="true"></i> Insert delay</button>
+                    <button type="button" class="btn btn-success action-button" (click)="pitchUp()" title="Pitch the sound up"><i class="fas fa-plus-circle" aria-hidden="true"></i> Pitch Up</button>
+                    <button type="button" class="btn btn-warning action-button" (click)="pitchDown()" title="Pitch the sound down"><i class="fas fa-minus-circle" aria-hidden="true"></i> Pitch Down</button>
+                    <button type="button" class="btn btn-secondary action-button" (click)="undo()" title="Undo the last action"><i class="fas fa-undo" aria-hidden="true"></i> Undo</button>
+                    <select class="form-select action-button" [(ngModel)]="selectLanguage" (change)="onSelectLanguage()" style="width: auto;" title="Select Voice">
+                        <option *ngFor="let voice of language" [value]="voice">{{ voice }}</option>
+                    </select>
+                    <select class="form-select action-button" [(ngModel)]="selectedVoice" style="width: auto;" title="Select Voice">
+                        <option *ngFor="let voice of voicesListByLanguage" [value]="voice.value">{{ voice.name }}</option>
+                    </select>
+                </div>
+                <div #editor contenteditable="true" class="editor mb-3" style="text-align:left" placeholder="Enter text here..." (paste)="onPaste($event)">
+                </div>
+                <div class="output-wrapper" style="text-align:center">
+                    <div #output class="output" style="height:60px;overflow-y:auto;"></div>
+                </div>
+                <p *ngIf="isValidateSSML" class="error-message" style="color:red;text-align:left">Invalid SSML</p>
+            </div>
+            <div class="d-flex justify-content-between mt-3">
+                <button type="button" class="btn btn-success action-button" (click)="convertToSsml()">Show SSML <i class="fas fa-code" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-danger action-button" (click)="voiceSSML()">Speak <i class="fas fa-volume-up" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

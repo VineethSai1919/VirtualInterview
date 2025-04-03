@@ -17,6 +17,9 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { UsersComponent } from './users/users.component';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { SkillsComponent } from './skills/skills.component';
+import { QuestionsComponent } from './questions/questions.component';
+import { SsmleditorComponent } from './questions/ssmleditor/ssmleditor.component';
+import { CheckboxModule } from 'primeng/checkbox';
 
 
 @NgModule({
@@ -26,7 +29,9 @@ import { SkillsComponent } from './skills/skills.component';
     AdminNavMenuComponent,
     RolesComponent,
     UsersComponent,
-    AdminloginComponent
+    AdminloginComponent,
+    QuestionsComponent,
+    SsmleditorComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +44,9 @@ import { SkillsComponent } from './skills/skills.component';
     PaginatorModule,
     ToastModule,
     InputTextModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    CheckboxModule
+
   ]
 })
 export class AdminModule { }

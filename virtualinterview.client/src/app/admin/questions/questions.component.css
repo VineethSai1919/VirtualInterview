@@ -1,0 +1,524 @@
+.question {
+  color: #495057;
+  background: #ffffff;
+  padding: 0.75rem 0.75rem;
+  border: 1px solid #ced4da;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: inherit;
+  width: 97.3% !important
+}
+
+.options {
+  width: 96%
+}
+
+.dropdown-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Adjust spacing as needed */
+}
+
+:host ::ng-deep .p-autocomplete {
+  width: 30rem !important;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.custom-paginator {
+  margin-left: auto; /* Align paginator to the right */
+}
+
+:host ::ng-deep .p-button:not(.p-autocomplete-dropdown) {
+  height: 42px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+}
+
+:host ::ng-deep .p-dialog-content {
+  overflow-y: visible !important;
+  flex-grow: 1;
+  overflow-x: hidden
+}
+
+:host ::ng-deep .p-dialog .p-dialog-content {
+  background: #ffffff !important;
+  color: #4b5563 !important;
+  /* padding: 0 1.5rem 2rem 1.5rem; */
+}
+
+
+p-radioButton {
+  vertical-align: top !important; /* Aligns the radio button at the top */
+  margin-top: 0 !important; /* Adjusts the top margin if needed */
+}
+
+
+.icon {
+  margin-left: 88rem;
+}
+
+
+@media (max-width: 1200px) {
+  .icon {
+    margin-left: 10rem; /* Adjust margin left for smaller desktops */
+  }
+}
+
+
+@media (max-width: 992px) {
+  .icon {
+    margin-left: 5rem; /* Adjust margin left for large tablets */
+  }
+}
+
+
+@media (max-width: 768px) {
+  .icon {
+    margin-left: 2rem; /* Adjust margin left for portrait tablets and some phones */
+  }
+}
+
+
+@media (max-width: 576px) {
+  .icon {
+    margin-left: 1rem; /* Minimal margin for small devices */
+  }
+}
+
+:host ::ng-deep .p-autocomplete-dropdown {
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+  height: 47px;
+  margin-bottom: 0px;
+}
+
+
+.multiple-choice {
+  height: 30rem;
+  /*  overflow-x: hidden;
+  overflow-y: scroll;*/
+}
+
+.default-height {
+  height: 15rem;
+  /* overflow-x: hidden;
+  overflow-y: scroll;*/
+}
+
+
+.discriptive {
+  height: 20rem;
+  /* overflow-x: hidden;
+  overflow-y: scroll;*/
+}
+
+
+.highlight-border {
+  border: 2px solid #428ab1 !important; /* Adjust the style as needed */
+}
+
+:host ::ng-deep .p-paginator .p-dropdown {
+  width: unset !important;
+}
+
+:host :ng-deep .table-bordered td {
+  border: 1px solid #ffffff;
+}
+
+:host :ng-deep .table td, .table th {
+  border-top: 0px !important;
+}
+
+:host ::ng-deep .p-autocomplete {
+  width: 100% !important;
+}
+
+.radio-group label {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.questions {
+  height: 115%;
+  overflow-x: hidden !important;
+  overflow-y: scroll;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-header {
+  padding-bottom: 0px !important;
+}
+
+::ng-deep .p-button.p-button-danger {
+  background: #ef4444 !important;
+  border: 1px solid #ef4444 !important;
+}
+
+::ng-deep .p-button.delete .p-button-label {
+  color: white !important;
+}
+
+
+
+:host ::ng-deep .p-dialog .p-dialog-content {
+  max-height: 30rem;
+  overflow-y: scroll !important;
+}
+
+
+:host ::ng-deep .p-dialog .p-dialog-footer {
+  padding: 0px !important;
+}
+
+.fromTime {
+  width: 11.5rem;
+  margin-left: 11px;
+  height: 3rem;
+  border-radius: 5px;
+  border: 1px solid #ddd8d8;
+}
+
+:host ::ng-deep .p-calendar {
+  width: 11.4rem !important
+}
+
+
+/*:host ::ng-deep .p-dialog:not(.no-overflow-dialog) .p-dialog-content {
+  overflow-y: unset !important;*/
+/*max-height: 370px !important;*/
+/*}*/
+
+::ng-deep .p-datatable-scrollable > .p-datatable-wrapper {
+  max-height: 225px !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 7px !important;
+  width: 97.5% !important;
+}
+
+.groups-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: rgb(249 250 251);
+  border-radius: 0.5rem;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background-color: white;
+  border: 1px solid rgb(229 231 235);
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.tag-text {
+  color: rgb(55 65 81);
+}
+
+.remove-tag {
+  margin-left: 5px;
+  color: rgb(156 163 175);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  padding: 0 0.25rem;
+}
+
+  .remove-tag:hover {
+    color: rgb(75 85 99);
+  }
+
+.remove-group {
+  color: rgb(156 163 175);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+  .remove-group:hover {
+    color: rgb(75 85 99);
+  }
+
+.trash-2-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+
+.textarea-group {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+  .textarea-group label {
+    margin-bottom: 0.5rem;
+  }
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1446px;
+  }
+}
+
+/* Hide the checkbox but keep it functional */
+/*.dropdown-toggle {
+  display: none;
+}*/
+
+/* Container for the dropdown */
+/*.dropdown {
+  position: relative;
+  display: inline-block;
+}*/
+
+/* Button styling */
+.dropdown-btn {
+  background-color: #4FA1C1;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+  .dropdown-btn:hover {
+    background-color: #3A8CA8;
+  }
+
+/* Icon in button */
+.filter-icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* Dropdown content */
+/*.dropdown-content {*/
+/*  display: none;
+  position: absolute;
+  top: 100%;*/
+/*left: 0;
+  margin-top: 8px;
+  background-color: white;
+  min-width: 580px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  padding: 16px;
+  z-index: 1000;
+}*/
+
+.dropdown-content {
+  max-height: 400px;
+  background-color: white;
+  min-width: 100%; /* Full-width on smaller screens */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 16px;
+  z-index: 1000;
+  left: 0;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .dropdown-content {
+    min-width: 100%;
+    max-height: 550px;
+  }
+}
+
+@media(min-width:768px) {
+  .dropdown-content {
+    max-height: 425px;
+  }
+}
+
+/* Set a fixed height and scrolling for the tags table */
+.p-table {
+  max-height: 400px; /* Adjust as needed */
+  overflow-y: auto;
+}
+
+
+/* Add this to your global styles.css or component's stylesheet */
+.responsive-input {
+  width: 100%; /* Default for larger screens */
+  max-width: 82%;
+}
+
+.responsive-add-input {
+  width: 100%; /* Default for larger screens */
+  max-width: 80%;
+}
+
+.responsive-edit-input {
+  width: 100%; /* Default for larger screens */
+  max-width: 80%;
+}
+
+@media (max-width: 576px) {
+  .responsive-input {
+    width: 82%; /* 82% width on small screens */
+  }
+}
+
+@media (max-width: 1400px) and (min-width: 1200px) {
+  .responsive-add-input {
+    max-width: 88%; /* 82% width for screens between 1200px and 1400px */
+  }
+}
+
+
+/* Add this to your global styles.css or component's stylesheet */
+@media (max-width: 1550px ) {
+  .responsive-mt {
+    margin-top: 50px; /* Adjust this value as needed */
+  }
+}
+
+@media (max-width: 1400px ) {
+  .responsive-add-mt {
+    margin-top: 30px; /* Adjust this value as needed */
+  }
+}
+
+@media (max-width: 770px ) {
+  .responsive-add-mt {
+    margin-top: 25px;
+    text-align: left !important;
+  }
+}
+
+@media (max-width: 660px ) {
+  .responsive-mt {
+    margin-top: 30px; /* Adjust this value as needed */
+  }
+}
+
+@media (max-width: 1550px) {
+  .responsivetag-mt {
+    margin-top: 20px; /* Adjust this value as needed */
+  }
+}
+
+
+@media (max-width: 770px ) {
+  .responsiveness-add-mt {
+    margin-top: 20px;
+  }
+}
+
+/* Show dropdown when checkbox is checked */
+/*.dropdown-toggle:checked ~ .dropdown-content {
+  display: block;
+}*/
+
+/* Form elements styling */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  /*  display: block;*/
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #D1D5DB;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+  .form-input:focus,
+  .form-select:focus {
+    outline: none;
+    border-color: #4FA1C1;
+    box-shadow: 0 0 0 2px rgba(79, 161, 193, 0.1);
+  }
+
+:host ::ng-deep .p-calendar {
+  width: 79% !important;
+}
+
+:host ::ng-deep .from-timestamp .p-calendar {
+  width: 55% !important; /* Adjust width as desired for FromVideoStamp */
+}
+
+:host ::ng-deep .to-timestamp .p-calendar {
+  width: 64% !important; /* Adjust width as desired for ToVideoStamp */
+}
+
+:host ::ng-deep .add-from-timestamp .p-calendar {
+  width: 50% !important; /* Adjust width as desired for FromVideoStamp */
+}
+
+:host ::ng-deep .add-to-timestamp .p-calendar {
+  width: 60% !important; /* Adjust width as desired for ToVideoStamp */
+}
+
+:host ::ng-deep .edit-from-timestamp .p-calendar {
+  width: 51% !important; /* Adjust width as desired for FromVideoStamp */
+}
+
+:host ::ng-deep .edit-to-timestamp .p-calendar {
+  width: 61% !important; /* Adjust width as desired for ToVideoStamp */
+}
+
+
+::ng-deep .p-dropdown-items-wrapper {
+  max-width: 100%;
+  overflow-x: auto !important;
+}
+
+::ng-deep .p-dropdown-item {
+  white-space: nowrap !important;
+  padding-right: 20px;
+  text-align: start !important;
+}
+
+.dropdown-item {
+  min-width: max-content;
+}
