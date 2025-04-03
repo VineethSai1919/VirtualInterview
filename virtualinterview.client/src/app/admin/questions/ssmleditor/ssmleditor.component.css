@@ -1,0 +1,49 @@
+body {
+  background-color: #f8f9fa;
+}
+
+/*.spacing-default {
+  padding: 20px;
+}*/
+
+.spacing-tb {
+  margin: 20px 0;
+}
+
+.xxlarge {
+  font-size: 2.5rem;
+  color: #0056b3;
+}
+
+.editor {
+  min-height: 150px;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.output-wrapper {
+  margin-top: 1rem;
+  background-color: #e9ecef;
+  border-radius: 0.25rem;
+  padding: 1rem;
+}
+
+.toolbar .btn, .toolbar .form-select {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.error-text {
+  color: #dc3545;
+}
+
+.grey-text {
+  color: #6c757d;
+}
+
+.card {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}

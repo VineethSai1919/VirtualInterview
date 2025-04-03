@@ -1,0 +1,212 @@
+::ng-deep .p-dialog .p-dialog-header {
+  padding-bottom: 0px;
+}
+
+:host ::ng-deep .p-dialog-content {
+  overflow-y: visible !important;
+  flex-grow: 1;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-content {
+  background: #ffffff !important;
+  color: #4b5563 !important;
+}
+
+:host ::ng-deep .p-datepicker table td {
+  padding: 0px;
+}
+/*:host ::ng-deep .p-datepicker table th {
+  padding: 0px;
+}*/
+
+:host ::ng-deep .p-datepicker .p-datepicker-header {
+  padding: 0px;
+}
+
+:host ::ng-deep .p-datepicker {
+  top: 1rem !important;
+}
+
+.time-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-wrapper {
+  flex: 1;
+  margin-right: 10px;
+}
+
+
+:host ::ng-deep .p-multiselect {
+  min-width: 30rem;
+}
+
+:host ::ng-deep .p-multiselect-clearable .p-multiselect-label-container {
+  padding-right: unset !important;
+}
+
+:host ::ng-deep .p-overlay {
+  right: 1px !important;
+}
+
+/* CSS Styles */
+.selected-cities {
+  margin-top: 10px;
+}
+
+.selected-cities-list {
+  display: inline-block;
+}
+
+  .selected-cities-list span {
+    display: inline-block;
+    margin-right: 5px; /* Adjust as needed */
+  }
+
+:host ::ng-deep .p-button:not(.p-calendar .p-button) {
+  height: 42px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+}
+
+
+:host ::ng-deep .p-input-icon-right > .p-icon-wrapper, .p-input-icon-right > i:last-of-type {
+  right: 20px !important;
+}
+
+.pdf-container {
+  position: relative;
+  width: 600px;
+  height: 500px;
+}
+
+.download-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.fromTime {
+  width: 15.2rem;
+  margin-left: 11px;
+  height: 3rem;
+  border-radius: 5px;
+  border: 1px solid #ddd8d8;
+}
+
+.p-button.add {
+  margin-top: 2px;
+}
+
+.scrollable-list {
+  height: 100px;
+  overflow-y: auto;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 30rem
+}
+
+.formData {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 32rem
+}
+
+
+:host ::ng-deep .p-chips .p-chips-multiple-container {
+  width: 527px !important;
+  padding-left: 10px !important;
+}
+
+.form-group {
+  margin-bottom: 0px
+}
+
+:host ::ng-deep .p-multiselect-items-wrapper {
+  max-height: 160px !important;
+}
+
+
+/*:host ::ng-deep .p-calendar {
+  width: 100% !important;
+}*/
+
+
+:host ::ng-deep .p-dialog-content {
+  padding-bottom: 0px !important;
+}
+
+::ng-deep .p-dialog .p-dialog-header .p-dialog-title {
+  font-size: 25px;
+}
+
+.container {
+  max-width: 100% !important
+}
+
+.remove-group {
+  color: rgb(156 163 175);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+  .remove-group:hover {
+    color: rgb(75 85 99);
+  }
+
+.trash-2-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+::ng-deep .p-datatable-scrollable > .p-datatable-wrapper {
+  max-height: 225px !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 7px !important;
+  width: 99% !important;
+}
+
+.dropdown-content {
+  max-height: 400px;
+  background-color: white;
+  min-width: 100%; /* Full-width on smaller screens */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 16px;
+  z-index: 1000;
+  left: 0;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .dropdown-content {
+    min-width: 100%;
+    max-height: 550px;
+  }
+}
+
+@media(min-width:768px) {
+  .dropdown-content {
+    max-height: 425px;
+  }
+}
+
+::ng-deep .p-toolbar {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
