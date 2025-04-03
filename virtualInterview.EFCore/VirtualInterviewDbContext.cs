@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace virtualInterview.EFCore
 {
-    public class VirtualInterviewDbContext
+    public class VirtualInterviewDbContext:DbContext
     {
     }
 }
