@@ -8,6 +8,7 @@ import { AuthGuard } from '../Shared/authguard.service';
 import { SkillsComponent } from './skills/skills.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { SchedulesComponent } from './schedules/schedules.component';
+import { ReviewInterviewComponent } from './schedules/review-interview/review-interview.component';
 
 const routes=[
   {
@@ -17,7 +18,8 @@ const routes=[
       { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
       { path: 'skills', component: SkillsComponent,canActivate:[AuthGuard] },
       { path: 'questions', component: QuestionsComponent,canActivate:[AuthGuard] },
-      { path: 'schedules', component: SchedulesComponent,canActivate:[AuthGuard] },
+      { path: 'schedules', component: SchedulesComponent, canActivate: [AuthGuard] },
+      { path: 'review/:scheduleid', component: ReviewInterviewComponent, canActivate: [AuthGuard] },
       { path: 'adminlogin', component: AdminloginComponent },
 
     ]

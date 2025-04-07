@@ -38,6 +38,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { TreeModule } from 'primeng/tree';
 import { MenuModule } from 'primeng/menu';
+import { ReviewInterviewComponent } from './schedules/review-interview/review-interview.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { MenuModule } from 'primeng/menu';
     AdminloginComponent,
     QuestionsComponent,
     SsmleditorComponent,
-    SchedulesComponent
+    SchedulesComponent,
+    ReviewInterviewComponent
   ],
   imports: [
     CommonModule,
