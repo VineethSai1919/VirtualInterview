@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "virtualInterview.Models", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "virtualInterview.Repository", "virtualInterview.Repository\virtualInterview.Repository.csproj", "{34C1BD5E-BC45-4277-A72F-0F50D45B60B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "virtualInterview.Functions", "virtualInterview.Functions\virtualInterview.Functions.csproj", "{C5BE177A-48B2-4FF2-A016-F05451BFD617}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "virtualInterview.Functions", "virtualInterview.Functions\virtualInterview.Functions.csproj", "{C5BE177A-48B2-4FF2-A016-F05451BFD617}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -15,6 +15,7 @@ namespace virtualInterview.Repository.ScheduleRepositories
         ///Step 4: Define method to adds a list of schedules for candidates.
         ///Step 5: Define method to imports data from a file.
         ///Step 6: Define method to exports data to a CSV format.
+        ///Step 7: Updates the schedule score for a specific schedule.
     }
 
 }

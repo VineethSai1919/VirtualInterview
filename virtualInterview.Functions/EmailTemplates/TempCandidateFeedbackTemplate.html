@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        a {
+            color: #0073AA;
+        }
+
+            a:hover {
+                text-decoration: none;
+            }
+
+        .footer {
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table align="center" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="center">
+                    <img src="https://privacyinspectorstorage.blob.core.windows.net/storagemanagerapp/a8238258-a454-452f-bc72-34ced4b2b30a.png" alt="Alternate Text" />
+                </td>
+            </tr>
+            <p>Hello {{candidateName}},</p>
+            <p>Thank you for your interest in Praveena AI and for participating in our virtual interview.</p>
+
+            <p>
+                We have reviewed your performance and have provided feedback in the following link:<a href="{{feedbackURLLink}}"></a>
+            </p>
+
+            <p>Please note that this feedback is generated using artificial intelligence and may contain minor inaccuracies.</p>
+
+            <p>
+                For more information on our data privacy practices, please refer to our terms and conditions:
+                <br />
+                [Link]
+            </p>
+            <p>We appreciate your time and consideration.</p>
+
+            <p>Best regards,</p>
+            <p>Praveena AI Team</p>
+        </table>
+    </div>
+
+</body>
+</html>

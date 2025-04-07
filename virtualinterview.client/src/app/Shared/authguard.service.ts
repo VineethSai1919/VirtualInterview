@@ -27,14 +27,14 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     var token = this.loginservice.getAuthToken();
     if (!token) {
-      return this.router.parseUrl('/adminlogin');
+      return this.router.parseUrl('/');
     }
     if (this.loginservice.isTokenExpired(token) === true || token === null || token === undefined || token === '') {
       this.loginservice.logout();
-      return this.router.parseUrl('/adminlogin');
+      return this.router.parseUrl('/');
     }
     if (this.loginservice.getRoleName() === 'Admin') {
-      this.router.parseUrl('/admin/users');
+      this.router.parseUrl('/admin/schedules');
       return true;
     }
     return true;

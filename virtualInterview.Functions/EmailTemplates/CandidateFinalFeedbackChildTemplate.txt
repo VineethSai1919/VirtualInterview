@@ -1,0 +1,16 @@
+Question {{QuestionNumber}}: 
+{{QuestionText}}
+ 
+Expected Answer:
+{{ExpectedAnswer}} 
+
+
+Candidate's Answer:
+{{CandidateAnswer}}
+ 
+Score: {{CandidateScore}}
+ 
+Feedback_To_Candidate:
+{{Feedback}}
+
+

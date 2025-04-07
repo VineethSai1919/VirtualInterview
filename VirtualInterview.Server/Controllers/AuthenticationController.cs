@@ -24,6 +24,29 @@ namespace VirtualInterview.Server.Controllers
         {
             return Ok();
         }
+        ///Step 3: Implements the UserLogin method to handle user login requests.
+        [HttpPost]
+        [Route("UserLogin")]
+        public async Task<ActionResult> UserLogin([FromBody] EntityEntry loginDetails)
+        {
+            try
+            {
+                return Ok();
+            }
+            catch
+            {
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
+        }
+
+        /// Step 4: Implements the ForgetPassword method to handle password reset requests.
+        [HttpPost]
+        [Route("forgetpassword")]
+        public async Task<ActionResult> ForgetPassword(string emailId)
+        {
+            return Ok();
+        }
+
     }
 
 

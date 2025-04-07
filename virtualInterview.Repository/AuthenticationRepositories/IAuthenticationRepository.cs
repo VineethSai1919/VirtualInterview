@@ -8,7 +8,10 @@ namespace virtualInterview.Repository.AuthenticationRepositories
 {
     public interface IAuthenticationRepository
     {
-        //Define Method to Authenticates an admin user and generates a JWT token upon successful login.
+        ///Step 1:Define Method to Authenticates an admin user and generates a JWT token upon successful login.
+        /// Step 2: Define method to handle user login
+        ///Step 3: Define method to handle forgot password
+
     }
 
 }

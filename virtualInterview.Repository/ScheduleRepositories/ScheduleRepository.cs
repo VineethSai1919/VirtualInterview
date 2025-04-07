@@ -16,7 +16,7 @@ namespace virtualInterview.Repository.ScheduleRepositories
         private readonly IEmailSender _emailSender;
 
         // Step 1: Implement constructor and inject database context and initialize Interface
-        
+
         /// Step 2: Implement method to generates a random password of the specified length.
         ///Step 3: Implement method to  updates the schedule for a candidate.
         ///Step 4: Implement method to sends updated mail to the user
@@ -26,7 +26,7 @@ namespace virtualInterview.Repository.ScheduleRepositories
         ///Step 8: Implement method to imports data from a file.
         ///Step 9: Implement method to converts a Excel File to CSV File
         /// Step 10: Implement method to exports data to a CSV format.
-   
+        /// Step 11: Updates the overall score of a schedule.
     }
 
 }

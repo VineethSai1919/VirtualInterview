@@ -1,0 +1,11 @@
+<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US' >
+<voice name="en-IN-NeerjaNeural">
+<prosody pitch="+3st">
+<span class="pitch-up">Technical Feedback</span>
+</prosody>: {{Technical_Feedback}}
+<prosody pitch="+3st">Communication Feedback</prosody> 
+: {{Communication_Feedback}} 
+<prosody pitch="+3st">Overall Rating</prosody> 
+: {{Overall_Candidate_Rating}}
+</voice>
+</speak>

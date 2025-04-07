@@ -22,12 +22,13 @@ namespace virtualInterview.Repository.WebJobRepositories
         private const string ApiVersion = "2024-08-01";
 
         // Step 1: Implement constructor and initialize Interfaces
-        
+
         // Step 2: This method creates a batch avatar job by sending a PUT request to the Azure MultiService API.
         // Step 3:This method deletes a batch avatar job by sending a DELETE request to the Azure MultiService API
         // Step 4:This method prints the response body and request ID to the error console if the response is not successful.
         // Step 5:This method retrieves the status of a batch avatar job by sending a GET request to the Azure MultiService API.
-
+        ///Step 6: Implement method to create a batch avatar job for AI feedback
+        ///Step 7:  Implement method to create a batch avatar job
     }
 
 }

@@ -23,6 +23,7 @@ namespace virtualInterview.Repository.EmailSenderRepositories
         // Step 1: Implement constructor and inject database context and initializes the Interfaces
         ///Step 2: Implement method to sends a scheduled exam invite asynchronously.
         ///Step 3: Implement method to sends an updated scheduled exam invite asynchronously.
-        }
+        /// Step 4: Sends a forget password email asynchronously.
+    }
 
 }
