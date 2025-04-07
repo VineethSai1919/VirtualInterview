@@ -1,0 +1,699 @@
+.textarea {
+  width: 100%;
+  /*border-right: 0px;
+ border-top: 0px;
+ border-left: 0px;*/
+  min-height: 100px;
+  overflow-y: hidden;
+}
+
+  .textarea:focus {
+    overflow-y: auto;
+  }
+
+
+/* Base styles */
+.w3-container {
+  padding: 16px;
+}
+
+.w3-card {
+  margin-bottom: 16px;
+}
+
+.w3-center {
+  text-align: center;
+}
+
+.w3-right {
+  float: right;
+}
+
+.w3-left {
+  float: left;
+}
+
+.w3-button {
+  padding: 8px 16px;
+}
+
+/* Flexbox layout for main grid */
+.w3-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -16px;
+  margin-right: -16px;
+}
+
+/*.w3-col {
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+}*/
+
+/* Set column widths based on screen size */
+.w3-col.m3 {
+  width: 100%;
+  flex: 0 0 100%;
+}
+
+.w3-col.m7, .w3-col.m9, .w3-col.m2 {
+  width: 100%;
+  flex: 0 0 100%;
+}
+
+@media (min-width: 600px) {
+  .w3-col.m3 {
+    width: 25%;
+    flex: 0 0 25%;
+  }
+
+  .w3-col.m7 {
+    width: 58.3333%;
+    flex: 0 0 58.3333%;
+  }
+
+  .w3-col.m9 {
+    width: 75%;
+    flex: 0 0 75%;
+  }
+
+  .w3-col.m2 {
+    width: 16.6667%;
+    flex: 0 0 16.6667%;
+  }
+}
+
+.question {
+  padding: 0.75rem 0.75rem;
+  border: 1px solid #ced4da;
+  width: 99% !important
+}
+
+
+.ListOfQuestion {
+  color: #495057;
+  background: #ffffff;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+
+/* Additional responsive adjustments */
+@media (min-width: 992px) {
+  .w3-col.m3 {
+    width: 25%;
+  }
+
+  .w3-col.m7 {
+    width: 58.3333%;
+  }
+
+  .w3-col.m9 {
+    width: 75%;
+  }
+
+  .w3-col.m2 {
+    width: 16.6667%;
+  }
+}
+
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Center align form dialog */
+.text-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style for profile edit dialog */
+form {
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+  .form-group label {
+    margin-bottom: 8px;
+  }
+
+  .form-group input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+.mt-3 {
+  margin-top: 16px;
+}
+
+.text-end {
+  text-align: end;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.gap-2 {
+  gap: 8px;
+}
+
+
+:host ::ng-deep .p-dialog-content {
+  overflow-y: unset !important
+}
+
+.video-poster {
+  height: 330px; /* Desired height */
+  width: 100%; /* Adjust width if needed */
+  object-fit: cover; /* Ensures the poster covers the entire area */
+}
+
+/*.waveform-overlay {
+  position: absolute;
+  bottom: 20px;*/ /* Adjust as needed */
+/*left: 0;
+  right: 0;
+  height: 60px;*/ /* Ensure this height matches your WaveSurfer settings */
+/*background: rgba(0, 0, 0, 0.5);*/ /* Optional: Background color to see the waveform */
+/*pointer-events: none;*/ /* Allow clicks to pass through */
+/*}*/
+/* interview.component.css */
+
+
+
+/*.waveform-overlay.hidden {
+    display: none;*/ /* Hide the waveform when not playing */
+/*}*/
+
+.fixed-width {
+  width: 200px; /* Set your desired width */
+  white-space: nowrap; /* Prevents text from wrapping */
+  overflow: hidden; /* Hides overflow content */
+  text-overflow: ellipsis; /* Adds ellipsis (...) for overflowing text */
+}
+
+
+:host ::ng-deep .p-datatable-table {
+  table-layout: fixed;
+  width: 44rem
+}
+
+:host ::ng-deep .p-datatable-wrapper {
+  overflow-x: hidden
+}
+
+:host ::ng-deep .table-bordered td, .table-bordered th {
+  border: unset;
+}
+
+.highlighted-row {
+  background-color: #95d6d6 !important;
+  /* font-size: 15px; */
+  font-weight: 700;
+}
+
+.video-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+:host ::ng-deep .table-striped tbody tr:nth-of-type(odd) {
+  background-color: unset;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  width: 20rem !important;
+}
+
+.image {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  font-size: x-large;
+}
+
+@media (min-width:1100px) and (max-width: 1600px) {
+  .centered {
+    left: 30%;
+  }
+}
+
+@media (min-width:760px) and (max-width: 1100px) {
+  .centered {
+    left: 40%;
+  }
+}
+
+@media (min-width:576px) and (max-width: 760px) {
+  .centered {
+    left: 30%;
+  }
+}
+
+.spinner {
+  position: absolute;
+  top: 42%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: #000;
+  border-left-color: #6e7086;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+}
+
+.timer-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.progress-ring__circle {
+  fill: none;
+  stroke: green;
+  stroke-width: 4px;
+  stroke-dasharray: 628.32, 628.32;
+  transition: stroke-dashoffset 1s linear;
+}
+
+#timer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.warning {
+  color: orange;
+  stroke: orange;
+}
+
+.danger {
+  color: red;
+  stroke: red;
+}
+
+.success {
+  color: green;
+  stroke: green;
+}
+
+.responsive-heading {
+  font-size: 2rem;
+  margin-top: 100px;
+}
+
+.responsive-timer {
+  font-size: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .responsive-heading {
+    font-size: 1.5rem;
+    margin-top: 50px;
+  }
+
+  .responsive-timer {
+    font-size: 2rem;
+  }
+
+  .progress-ring__circle {
+    stroke-width: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .responsive-heading {
+    font-size: 1.2rem;
+    margin-top: 30px;
+  }
+
+  .responsive-timer {
+    font-size: 1.8rem;
+  }
+
+  #timer {
+    font-size: 2rem;
+  }
+
+  .progress-ring__circle {
+    stroke-width: 2px;
+  }
+}
+
+
+/** {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  font-family: 'Arial', sans-serif;
+}*/
+
+.no-questions-card {
+  width: 50%;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  margin-top: 200px;
+}
+
+  .no-questions-card:hover {
+    transform: scale(1.02);
+  }
+
+.no-questions-icon {
+  font-size: 4rem;
+  color: #667eea;
+  margin-bottom: 20px;
+}
+
+.no-questions-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.no-questions-message {
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.no-questions-action {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: transform 0.2s ease;
+}
+
+  .no-questions-action:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+.next-button {
+  background-color: #3B82F6;
+  color: white;
+  border-radius: 17px;
+  width: 20%
+}
+
+@media (max-width: 1000px) {
+  .next-button {
+    width: 100% !important
+  }
+}
+
+.show-on-small {
+  display: none;
+}
+
+@media (max-width: 768px) { /* Adjust max-width as per your small screen breakpoint */
+  .show-on-small {
+    display: inline-block;
+  }
+}
+
+.hide-on-small {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hide-on-small {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .col-3 {
+    display: none !important;
+  }
+
+  .col-9 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+:host ::ng-deep .bg-primary {
+  background-color: #428ab1 !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: white;
+}
+
+.applyStyles {
+  font-size: 22px;
+}
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #428ab1 !important;
+  font-size: 22px;
+}
+
+  .topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    font-size: 22px;
+  }
+
+    /* Exclude the image link from hover and active styles */
+    .topnav a.no-hover:hover,
+    .topnav a.no-hover.active {
+      background-color: transparent;
+      color: inherit;
+    }
+
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+      font-size: 22px;
+    }
+
+    .topnav a.active {
+      background-color: white;
+      font-size: 22px;
+      color: #428ab1 !important;
+    }
+
+  .topnav .icon {
+    display: none;
+  }
+
+@media screen and (max-width: 1260px) {
+  .topnav a:not(:first-child) {
+    display: none;
+  }
+
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 1260px) {
+  .topnav.responsive {
+    position: relative;
+  }
+
+    .topnav.responsive .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .topnav.responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+}
+
+/* Move logout link to the left in responsive mode */
+@media screen and (max-width: 1000px) {
+  .topnav a[title="Sign out"] {
+    float: left !important; /* Force the logout link to float to the left */
+  }
+}
+
+
+.navbar-brand img {
+  width: 80%; /* Default width */
+}
+
+@media (max-width: 1200px) {
+  .navbar-brand img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar-brand img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-brand img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-brand img {
+    width: 100%;
+  }
+}
+
+::ng-deep .p-sidebar .p-sidebar-content {
+  padding: unset
+}
+
+::ng-deep .p-sidebar-content {
+  overflow-y: unset
+}
+
+
+.mainContainer {
+  max-width: 1400px;
+  margin-top: 60px;
+}
+
+@media (max-width: 768px) {
+  .mainContainer {
+    margin-top: unset;
+  }
+}
+
+.responsive-container {
+  height: calc(100vh - 5rem); /* Dynamically adjust height */
+  overflow-y: auto;
+}
+
+/* Optional fine-tuning for specific screen ranges */
+@media (max-width: 767px) {
+  .responsive-container {
+    height: calc(100vh - 10rem); /* More space for smaller screens */
+  }
+}
+
+@media (max-width: 767px) {
+  .responsive-container {
+    height: calc(100vh - 10rem); /* Adjust height for smaller screens */
+  }
+
+  .image-container {
+    height: 12rem; /* Reduce image container height */
+  }
+
+  .centered {
+    font-size: 1.2rem; /* Adjust font size for smaller screens */
+  }
+}
+
+.image-container {
+  height: 17rem; /* Default height */
+  text-align: center;
+  color: white;
+  position: relative; /* To position the centered text */
+}
+
+/* Responsive image */
+.responsive-image {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+  height: 100%; /* Adjusts height relative to the container */
+  width: auto; /* Ensures the width adapts dynamically */
+}

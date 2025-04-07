@@ -1,0 +1,234 @@
+<!-- Main container for the exam interface, displayed if the exam starts after a timer -->
+<div class="row" *ngIf="startExamAfterTimer">
+
+    <!-- Sidebar containing the question list, displayed if the exam has started -->
+    <div class="mt-5" [ngClass]="{'col-3': isExamStarted}">
+        <div class="mt-4" *ngIf="qIndex && isExamStarted" style="height: 41.5rem; padding-top: 7px; overflow-y: auto;">
+            <div class="image mt-4" style="height: 17rem; text-align: center; color: white;">
+                <img src="../../../assets/Images/image.jpg" style="height:17rem" />
+
+                <!-- Display the schedule name or 'Assessment' if not available -->
+                <div class="centered">{{ ScheduleName || 'Assessment' }}</div>
+
+            </div>
+
+            <div class="card">
+                <div class="table-responsive">
+                    <!-- Table displaying the list of questions -->
+                    <p-table [value]="data" [ngClass]="'table table-striped table-bordered'">
+                        <ng-template pTemplate="body" let-product let-i="rowIndex">
+                            <tr [ngClass]="{'highlighted-row': i === currentIndex}" style="border-bottom:0.5px solid #c0baba;">
+
+                                <!-- Display question number -->
+                                <td>{{'Question ' + (i+1) }}</td>
+                                <td>
+                                    <!-- Checkbox indicating if the question is checked, disabled for user interaction -->
+                                    <p-checkbox [binary]="true" inputId="flexCheckDefault" [(ngModel)]="data[i].isChecked" [disabled]="true"></p-checkbox>
+                                </td>
+                            </tr>
+
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Main content area for the exam questions and controls -->
+    <div [ngClass]="isExamStarted ? 'col-9' : 'col-12'">
+        <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+            <div class="w3-row text-center">
+                <div class="w3-col ">
+                    <div class="w3-row-padding" id="pnlExam">
+                        <div class="w3-col m12">
+                            <div class="w3-card w3-round w3-white me-4">
+                                <div class="w3-container w3-padding" *ngIf="!IsExamCompleted">
+
+                                    <!-- Display the current question and recording status -->
+                                    <div class="row" *ngIf="qIndex && isExamStarted">
+                                        <div #waveeform class="waveform-overlay ms-5"></div>
+                                        <div class="col-7 mt-2" *ngIf="startRecording">
+                                            <img class="w3-left text-start" style="width:3rem" src="../../../assets/Images/recorder (online-video-cutter.com) (2).gif" /><h4 class="text-start mt-2">Rec</h4>
+
+                                            <
+                                        </div>
+                                        <div class="mt-4 text-end" [ngClass]="startRecording? 'col-2' :'col-9' " style="padding-right: 0px;">
+                                            <h6>{{ 'Question ' + (currentIndex + 1) + ' of ' + qIndex }}</h6>
+
+                                        </div>
+                                        <div class="col-3 mt-1" style="padding-left: 0px;">
+                                            <!-- Button to submit the exam, enabled only if recording has started -->
+                                            <button id="btnSubmit" type="button" class="w3-button w3-margin-bottom ms-2 mt-2"
+                                                    style="background-color: #f02f2f; color: white; border-radius: 17px; margin-bottom: unset !important; width: 85%; "
+                                                    (click)="submit()" [disabled]="!startRecording" *ngIf="isExamStarted">
+                                                Submit Exam
+                                            </button>
+                                        </div>
+
+                                    </div>
+
+                                    <hr class="w3-clear" *ngIf="isExamStarted">
+
+                                    <!-- Display the current question content and options -->
+                                    <div class="mt-5" *ngIf="isExamStarted" style="display: flex; align-items: flex-start;">
+                                        <div style="flex: 1;">
+                                            <p>
+                                                <ng-container *ngIf="objData?.length > 0">
+                                                    <div class="w3-col m2" style="width: 101.6667%;">
+                                                        <div class="w3-card ms-3 me-3 w3-round w3-white w3-center" (click)="play()">
+                                                            <!-- Container with relative positioning -->
+                                                            <div class="video-container">
+                                                                <video #questionPlayer
+                                                                       class="video-poster"
+                                                                       autoplay preload="auto"
+                                                                       crossorigin="anonymous"
+                                                                       (loadeddata)="onLoadedData()"
+                                                                       (waiting)="onWaiting()"
+                                                                       (play)="onPlay()"
+                                                                       (pause)="onPause()">
+                                                                    <source [src]="objData[currentIndex].speechUrl" type="audio/mp4" />
+                                                                    <track [src]="objData[currentIndex].vttFileUrl"
+                                                                           kind="subtitles"
+                                                                           srclang="en"
+                                                                           label="English"
+                                                                           default>
+                                                                    Your browser does not support the video element.
+                                                                </video>
+
+                                                                <!-- Play Icon -->
+                                                                <i *ngIf="!isPlaying" class="fa fa-play-circle play-icon"></i>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <br />
+                                                    </div>
+
+                                                    <!-- Display the options for the current question -->
+                                                    <div style="padding: 5px;" id="eqOption">
+                                                        <div *ngIf="objData[currentIndex]?.questionType == 1">
+                                                            <ng-container *ngFor="let option of objData[currentIndex]?.choicesList">
+                                                                <label>&nbsp;{{ option.displayText }}</label><br>
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                </ng-container>
+                                            </p>
+                                        </div>
+
+                                        <div style="flex: 1;">
+                                            <!-- Display the video feed if enabled -->
+                                            <div class="w3-col m2" style="width: 101.6667%;" *ngIf="isVideoEnabled">
+                                                <div class="w3-card ms-3 me-3 w3-round w3-white w3-center">
+                                                    <video #videoElement playsinline autoplay muted
+                                                           style="height: 329px; width: 100%; object-fit: cover;"></video>
+                                                </div>
+                                                <br />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <!--<div class="col-6">-->
+                                        <div class="row text-center">
+
+                                            <!-- Button to navigate to the next question, enabled only if recording has started -->
+                                            <button *ngIf="isExamStarted && !isLastQuestion()" id="btnNext" type="button" class="w3-button w3-margin-bottom ms-2"
+                                                    style="background-color: #3B82F6; color: white; border-radius: 17px; width: 20%"
+                                                    (click)="next()" [disabled]="!startRecording">
+                                                Next question<i class="fa fa-arrow-right ms-1" aria-hidden="true"></i>
+                                            </button>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Display a thank you message if the exam is completed -->
+                    <div class="w3-col m12" *ngIf="IsExamCompleted">
+                        <div class="w3-card w3-round w3-white">
+
+                            <div class="text-center">
+                                <img src="../../../assets/Images/undraw_Happy_announcement_re_tsm0.png" style="height:11rem" />
+                            </div>
+                            <div><h3>Thank you</h3></div>
+                            <div><h3>We are happy with your participation.</h3></div>
+
+                            <div>
+                                <h3 class="text-center">You will shortly receive an email with AI Feedback.</h3>
+                            </div>
+                            <br />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Display a countdown timer before the exam starts -->
+<div class="row mt-5" *ngIf="!startExamAfterTimer && !isQuestions">
+    <h2 class="text-center" style="margin-top:100px;">Your Exam Starts in </h2>
+    <div id="timer" [ngClass]="timerClass" class="text-center">{{ displayTime }}<h5 class="mt-4">&nbsp; sec</h5></div>
+    <svg class="progress-ring" viewBox="0 0 100 100">
+        <circle class="progress-ring__circle"
+                [ngClass]="timerClass"
+                r="15"
+                cx="50"
+                cy="50"
+                [attr.stroke-dasharray]="strokeDashArray"
+                [attr.stroke-dashoffset]="strokeDashOffset" />
+    </svg>
+</div>
+
+<!-- Display a message if no questions are available -->
+<div class="row mt-5 pt-5" *ngIf="isQuestions">
+    <div class="col-4">
+    </div>
+    <div class="col-4 mt-5 pt-5">
+        <div class="message-container">
+            <div class="message-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+                </svg>
+            </div>
+            <h2 class="message-title">No Questions Available</h2>
+            <p class="message-content">
+                There are currently no questions available for this schedule. Please approach your consultant trainer for further assistance.
+            </p>
+        </div>
+    </div>
+    <div class="col-4">
+    </div>
+
+</div>
+<div class="text-center">
+    <p-dialog header="Header" [(visible)]="results" [modal]="true" [draggable]="false" [closable]="false" [style]="{ width: '40rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+        <ng-template pTemplate="header">
+            <div class="inline-flex align-items-center justify-content-center gap-2">
+                <b><span style="font-size:20px">Profile</span></b>
+            </div>
+        </ng-template>
+        <form #myForm="ngForm" novalidate>
+            <div class="form-group row text-start align-items-center">
+                <label for="Name" class="font-bold col-form-label"><b>Name:</b></label>
+                <div class="d-flex flex-grow-1 align-items-center">
+                    <input class="form-control flex-grow-1" [(ngModel)]="name" id="Name" type="text"
+                           placeholder="Enter your name" name="Name" style="height: 3rem;" required>
+                </div>
+            </div>
+
+        </form>
+        <ng-template pTemplate="footer">
+            <div class="mt-3 text-end">
+                <p-button label="OK" pAutoFocus [autofocus]="true" [disabled]="!myForm.valid" (click)="onEdit()"></p-button>
+            </div>
+        </ng-template>
+    </p-dialog>
+</div>

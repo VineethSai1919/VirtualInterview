@@ -1,0 +1,73 @@
+<!-- Main container for the review interview component -->
+<div [class.overview-mode]="isOverviewMode" *ngIf="reviewDTO.length>0">
+
+    <!-- Top control buttons and question counter -->
+    <div class="top-controls">
+        <div class="controls-left">
+            <!-- Button to toggle overview mode -->
+            <button class="overview-button" (click)="toggleOverviewMode()">
+                {{ isOverviewMode ? 'Exit Overview' : 'Overview Mode' }}
+            </button>
+            <!-- Display current question number and total questions if not in feedback URL mode -->
+            <span class="question-counter" *ngIf="!IsFeedbackUrl">
+                {{
+                'Question ' + (currentIndex + 1) + ' of ' + (reviewDTO.length)
+                }}
+            </span>
+        </div>
+    </div>
+
+    <!-- Section to display the current question -->
+    <div class="question-section" *ngIf="!IsFeedbackUrl">
+        <div class="question">
+            Q) &nbsp;{{reviewDTO[currentIndex].displayText}}
+        </div>
+    </div>
+
+    <!-- Wrapper for video and text content -->
+    <div class="content-wrapper" *ngIf="!IsFeedbackUrl">
+        <div class="video-section">
+            <div class="video-container">
+                <!-- Video player for candidate's response -->
+                <video #videoPlayer controls preload="auto" crossorigin="anonymous">
+                    <source [src]="reviewDTO[currentIndex].candidateAzureVideoPath" type="video/mp4">
+                    <track [src]="reviewDTO[currentIndex].candidateVTTFilePath"
+                           kind="subtitles"
+                           srclang="en"
+                           label="English"
+                           default>
+                </video>
+            </div>
+        </div>
+        <div class="text-section text-start">
+            <div class="answer-section">
+                <h3 class="section-title">Candidate Answer:</h3>
+                <p>{{reviewDTO[currentIndex].speechText || 'N/A'}}</p>
+            </div>
+            <div class="feedback">
+                <h3 class="section-title">AI Feedback:</h3>
+                <p>
+                    {{reviewDTO[currentIndex].aiFeedback || 'N/A'}}
+                </p>
+            </div>
+            <div class="score">Score:{{reviewDTO[currentIndex].score || 'N/A'}}</div>
+        </div>
+    </div>
+
+    <!-- Navigation buttons to move between questions -->
+    <div class="navigation" *ngIf="!IsFeedbackUrl">
+        <button class="nav-button prev-button" (click)="previousRecord()" [disabled]="currentIndex === 0">Previous</button>
+        <button class="nav-button next-button" (click)="nextRecord()" *ngIf="currentIndex < reviewDTO.length - 1">Next</button>
+    </div>
+</div>
+
+<!-- Overview mode content -->
+<div class="content-wrapper" *ngIf="isOverviewMode">
+    <div class="video-section">
+        <div class="video-container">
+            <video controls>
+                <source [src]="url" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</div>

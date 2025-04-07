@@ -1,0 +1,103 @@
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header mt-3 pt-5">
+        <h1>Virtual Interview with Praveena AI</h1>
+    </header>
+
+    <main class="container">
+        <section class="video-section">
+            <div class="video-grid mt-5">
+                <div class="video-container mt-5" (click)="play()" style=" background: white; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                    <div class="video-placeholder" [ngStyle]="{'background-color': !isLoading ? 'white' : ''}">
+
+                        <!-- Video player for the interview instructions -->
+                        <video #videoPlayer style="width: 115%; "
+                               crossorigin="anonymous" preload="auto"
+                               class="video-poster"
+                               (loadeddata)="onLoadedData()"
+                               (waiting)="onWaiting()"
+                               (play)="onPlay()"
+                               (pause)="onPause()">
+                            <source [src]="audioUrl" type="audio/mp4" />
+                            <track src="../../../assets/SubtitlesFolder/interviewsubtitle.vtt"
+                                   kind="subtitles"
+                                   srclang="en"
+                                   label="English"
+                                   default>
+                            Your browser does not support the video element.
+                        </video>
+                        <div class="spinner" *ngIf="isLoading">
+                            <!-- Loading spinner displayed while video is loading -->
+                        </div>
+
+                        <div *ngIf="!isLoading">
+                            <!-- Play and pause icons based on video state -->
+                            <i *ngIf="!isPlaying" class="fa fa-play-circle play-icon"></i>
+                            <i *ngIf="isPlaying" class="fa fa-pause-circle pause-icon" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-container mt-5">
+                    <div class="video-placeholder">
+                        <!-- Video element for displaying the user's webcam feed -->
+                        <video #videoElement playsinline autoplay muted
+                               style="height: 329px; width: 100%; object-fit: cover;">
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <div class="controls">
+                <!-- Replay and Start Exam buttons -->
+                <button class="btn btn-primary" (click)="replay()">Replay</button>
+                <button class="btn btn-success" [disabled]="!enableStart"
+                        (click)="startExam()">
+                    Start Exam
+                </button>
+            </div>
+        </section>
+
+        <section class="instructions text-start">
+            <h2>Interview Instructions</h2>
+
+            <div class="instruction-step">
+                <h3>1. Starting the Interview</h3>
+                <ul>
+                    <li>When you're ready to begin, click the "Start Exam" button.</li>
+                </ul>
+            </div>
+
+            <div class="instruction-step">
+                <h3>2. Webcam Setup</h3>
+                <ul>
+                    <li>Ensure you are clearly visible on your webcam throughout the interview.</li>
+                    <li>Look directly into the camera while answering questions.</li>
+                </ul>
+            </div>
+
+            <div class="instruction-step">
+                <h3>3. Environment</h3>
+                <ul>
+                    <li>Find a quiet location to avoid background noise.</li>
+                </ul>
+            </div>
+
+            <div class="instruction-step">
+                <h3>4. Answering Questions</h3>
+                <ul>
+                    <li>After answering each question, click the "Next" button to proceed.</li>
+                </ul>
+            </div>
+
+            <div class="instruction-step">
+                <h3>5. Completing the Interview</h3>
+                <ul>
+                    <li>Once you've answered all the questions, click the "Submit" button.</li>
+                    <li>Please wait while your interview is being submitted.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
