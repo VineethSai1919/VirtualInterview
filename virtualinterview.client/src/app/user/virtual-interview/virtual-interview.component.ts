@@ -90,7 +90,7 @@ export class VirtualInterviewComponent implements OnInit {
 
   /**
  * Checks if the current question is the last question in the exam.
- */
+ */ 
   isLastQuestion(): boolean {
     return this.currentIndex === this.qIndex - 1;
   }
