@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginService } from '../../Shared/login.service';
 
 @Component({
   selector: 'app-admin-nav-menu',
@@ -7,6 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AdminNavMenuComponent {
   isNavbarOpen = false;
+  isNavVisible = true;
+  constructor(private loginService: LoginService) {
+   this.isNavVisible = this.loginService.isAuthenticated();
+
+  }
+  //ngOnInint() {
+  //  this.loginService.getLoginStatus().subscribe(status => {
+     
+  //  })
+  //}
 
   toggleNavbar() {
     this.isNavbarOpen = !this.isNavbarOpen;

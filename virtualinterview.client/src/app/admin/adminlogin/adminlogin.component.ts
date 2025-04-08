@@ -6,7 +6,8 @@ import { LoginService } from '../../Shared/login.service';
 @Component({
   selector: 'app-adminlogin',
   templateUrl: './adminlogin.component.html',
-  styleUrl: './adminlogin.component.css'
+  styleUrl: './adminlogin.component.css',
+  providers: [MessageService]
 })
 export class AdminloginComponent {
   email: string = '';

@@ -4,11 +4,10 @@ import { AuthGuard } from './Shared/authguard.service';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 
-const routes: Routes = [{ path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),canActivate:[AuthGuard] },
+const routes: Routes = [{ path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   { path: 'users', loadChildren: () => import('./user/user.module').then(m => m.UserModule), canActivate: [AuthGuard] },
   { path: 'login', component: UserLoginComponent },
-  { path: 'feedback/:scheduleid', component: FeedbackComponent },
-  { path: '', component: UserLoginComponent },
+  { path: 'feedback/:scheduleid', component: FeedbackComponent }
 ];
 
 @NgModule({

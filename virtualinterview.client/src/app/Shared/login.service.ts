@@ -98,8 +98,12 @@ export class LoginService {
    * Handles unauthorized errors by navigating to the home page and logging out the user.
    */
   unthorizedError() {
-    this.router.navigate(['/'])
-    this.logout();
+      if (this.getRoleName() == 'Admin') {
+        this.router.navigate(['/admin/login']);
+      } else {
+        this.router.navigate(['/login'])
+      }
+      this.logout();
   }
   /**
    * Handles forbidden errors by navigating to the home page.

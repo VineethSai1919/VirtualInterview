@@ -20,7 +20,7 @@ const routes=[
       { path: 'questions', component: QuestionsComponent,canActivate:[AuthGuard] },
       { path: 'schedules', component: SchedulesComponent, canActivate: [AuthGuard] },
       { path: 'review/:scheduleid', component: ReviewInterviewComponent, canActivate: [AuthGuard] },
-      { path: 'adminlogin', component: AdminloginComponent },
+      { path: 'login', component: AdminloginComponent },
 
     ]
   }
