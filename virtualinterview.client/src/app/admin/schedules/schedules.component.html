@@ -55,21 +55,21 @@
             <ng-template pTemplate="body" let-termdata>
                 <tr>
                     <td title="ScheduleName" (click)="showResultForSchedule(termdata)"
-                        style="cursor:pointer">
+                        style="cursor:pointer" class="text-center">
                         &nbsp;{{ termdata.scheduleName || 'N/A' }}
                     </td>
 
-                    <td title="Candidate Name">  {{termdata.candidateName || 'N/A' }}</td>
-                    <td title="Email">{{termdata.emailId}}</td>
-                    <td title="FromDate">{{ termdata.date ? (termdata.date + 'Z' | date:'d/M/yyyy, H:mm') : 'N/A' }}</td>
-                    <td title="ToDate">{{ termdata.toDate ? (termdata.toDate + 'Z' | date:'d/M/yyyy, H:mm'): 'N/A' }}</td>
-                    <td title="Action" *ngIf="Status !=='Completed'">
+                    <td title="Candidate Name" class="text-center">  {{termdata.candidateName || 'N/A' }}</td>
+                    <td title="Email" class="text-center">{{termdata.emailId}}</td>
+                    <td title="FromDate" class="text-center">{{ termdata.date ? (termdata.date + 'Z' | date:'d/M/yyyy, H:mm') : 'N/A' }}</td>
+                    <td title="ToDate" class="text-center">{{ termdata.toDate ? (termdata.toDate + 'Z' | date:'d/M/yyyy, H:mm'): 'N/A' }}</td>
+                    <td title="Action" *ngIf="Status !=='Completed'" class="text-center">
                         <i class="fa fa-edit" aria-hidden="true" style="cursor:pointer" (click)="EditSchedule(termdata)"></i>
                     </td>
-                    <td title="Result" *ngIf="Status == 'Completed' ">
+                    <td title="Result" *ngIf="Status == 'Completed' " class="text-center">
                         <p-button (onClick)="botResults(termdata)">View Result</p-button>
                     </td>
-                    <td title="Score" *ngIf="Status === 'Completed' "> <h5>{{termdata.score? termdata.score:'N/A'}}</h5> </td>
+                    <td title="Score" *ngIf="Status === 'Completed' " class="text-center"> <h5>{{termdata.score? termdata.score:'N/A'}}</h5> </td>
 
 
                 </tr>

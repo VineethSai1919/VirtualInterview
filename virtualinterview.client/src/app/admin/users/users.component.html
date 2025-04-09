@@ -30,9 +30,9 @@
             <ng-template pTemplate="body" let-termdata>
                 <tr>
                     <td></td>
-                    <td title="name">{{termdata.userName}}</td>
-                    <td title="email">{{termdata.emailId}}</td>
-                    <td>
+                    <td class="text-center" title="name">{{termdata.userName}}</td>
+                    <td class="text-center" title="email">{{termdata.emailId}}</td>
+                    <td class="text-center">
                         <!-- Icons for editing and deleting user profiles -->
                         <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="editLanguage(termdata)"></i>
                         <i class="fa fa-trash ms-2" aria-hidden="true" (click)="delete(termdata)"></i>

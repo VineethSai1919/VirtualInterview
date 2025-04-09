@@ -27,8 +27,8 @@
       <ng-template pTemplate="body" let-termdata>
         <tr>
           <td></td>
-          <td title="Question">{{termdata.name}}</td>
-          <td>
+          <td class="text-center" title="Question">{{termdata.name}}</td>
+          <td class="text-center">
             <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="editSkills(termdata)"></i>
             <i class="fa fa-trash ms-2" aria-hidden="true" (click)="delete(termdata)"></i>
           </td>
