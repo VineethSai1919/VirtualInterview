@@ -12,6 +12,7 @@
     <ProjectReference Include="..\virtualInterview.EFCore\virtualInterview.EFCore.csproj" />
     <ProjectReference Include="..\virtualInterview.Models\virtualInterview.Models.csproj" />
     <ProjectReference Include="..\virtualInterview.Repository\virtualInterview.Repository.csproj" />
+    <ProjectReference Include="..\VirtualInterview.Server\VirtualInterview.Server.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

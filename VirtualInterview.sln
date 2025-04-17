@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "virtualInterview.Models", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "virtualInterview.Repository", "virtualInterview.Repository\virtualInterview.Repository.csproj", "{34C1BD5E-BC45-4277-A72F-0F50D45B60B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "virtualInterview.Functions", "virtualInterview.Functions\virtualInterview.Functions.csproj", "{C5BE177A-48B2-4FF2-A016-F05451BFD617}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "virtualInterview.Functions", "virtualInterview.Functions\virtualInterview.Functions.csproj", "{15FABF4D-DBEF-44DB-BA88-85348D091B01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +43,10 @@ Global
 		{34C1BD5E-BC45-4277-A72F-0F50D45B60B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34C1BD5E-BC45-4277-A72F-0F50D45B60B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34C1BD5E-BC45-4277-A72F-0F50D45B60B4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5BE177A-48B2-4FF2-A016-F05451BFD617}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5BE177A-48B2-4FF2-A016-F05451BFD617}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5BE177A-48B2-4FF2-A016-F05451BFD617}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5BE177A-48B2-4FF2-A016-F05451BFD617}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15FABF4D-DBEF-44DB-BA88-85348D091B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15FABF4D-DBEF-44DB-BA88-85348D091B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15FABF4D-DBEF-44DB-BA88-85348D091B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15FABF4D-DBEF-44DB-BA88-85348D091B01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

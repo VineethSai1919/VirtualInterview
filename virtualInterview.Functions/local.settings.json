@@ -1,8 +1,36 @@
 {
-    "IsEncrypted": false,
-    "Values": {
-        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-        "FUNCTIONS_INPROC_NET8_ENABLED": "1",
-        "FUNCTIONS_WORKER_RUNTIME": "dotnet"
-    }
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "<storage_Url>",
+    "FUNCTIONS_INPROC_NET8_ENABLED": "1",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "AZURE_STORAGE_CONNECTION": "<storage_Url>",
+    "StorageConfig:AccountName": "<storage_Account_Name>",
+    "StorageConfig:ConnectionString": "<storage_ConnectionString>",
+    "StorageConfig:AccessKey": "<storage_AccessKey>",
+    "StorageConfig:storageBaseURL": "<storage_BaseURL>",
+    "StorageConfig:InterviewTranscriptioncontainerName": "transcripts-stagging",
+    "StorageConfig:InterviewContainerName": "interviewvideos-stagging",
+    "StorageConfig:QuestionsContainerName": "questions-stagging",
+    "StorageConfig:InterviewVTTContainerName": "ttfiles-stagging",
+    "StorageConfig:questionVtt": "questionsvttfiles-stagging",
+    "StorageConfig:questionTranscription": "questionstranscriprions-stagging",
+    "StorageConfig:AIFeedBackContainerName": "aifeedbackavatar-stagging",
+    "EmailTemplates:FinalFeedbackParentTemplate": "https://projectaideccansoft.blob.core.windows.net/assets/CandidateFinalFeedbackParentTemplate.txt",
+    "EmailTemplates:FinalFeedbackChildTemplate": "https://projectaideccansoft.blob.core.windows.net/assets/CandidateFinalFeedbackChildTemplate.txt",
+    "EmailTemplates:QuestionPrompt": "https://projectaideccansoft.blob.core.windows.net/assets/AIFeedbackPrompt.txt",
+    "EmailTemplates:CandidateFeedbackTemplate": "https://projectaideccansoft.blob.core.windows.net/assets/CandidateFeedbackTemplate.txt",
+    "AzureEmailSetting:connectionString": "<azure_Email_Connection_String>",
+    "AzureEmailSetting:From": "<azure_Email_From>",
+    "AzureMultiService:subscriptionKey": "<azure_MultiService_Subscription_Key>",
+    "AzureMultiService:speechEndpoint": "<azure_Speech_Endpoint>",
+    "AzureMultiService:ApiVersion": "2024-08-01",
+    "HttpRequestURL": "https://localhost:4200/",
+    "BccMails:Mails": "<admin_Emails>",
+    "EmailTemplates:SSMLFinalFeedbackTemplate": "https://projectaideccansoft.blob.core.windows.net/assets/SSMLFinalFeedbackTemplate.txt"
+
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=YOUR_SERVER;Database=YOUR_DB;Trusted_Connection=True;Encrypt=false;"
+  }
 }

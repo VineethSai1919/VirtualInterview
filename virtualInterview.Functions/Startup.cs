@@ -1,4 +1,4 @@
-using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,8 +8,8 @@ using virtualInterview.Repository.QuestionRepositories;
 using virtualInterview.Repository.SkillsRepositories;
 using virtualInterview.Repository.WebJobRepositories;
 
-[assembly: FunctionsStartup(typeof(ProjectAI.Functions.Startup))]
-namespace ProjectAI.Functions
+[assembly: FunctionsStartup(typeof(virtualInterview.Functions.Startup))]
+namespace virtualInterview.Functions
 {
     public class Startup : FunctionsStartup
     {
