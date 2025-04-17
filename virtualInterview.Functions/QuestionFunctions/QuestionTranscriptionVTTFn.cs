@@ -10,7 +10,7 @@ namespace virtualInterview.Functions.QuestionFunctions
     /// Azure Function triggered by a blob upload to process question transcriptions.
     public class QuestionTranscriptionVTTFn
     {
-        [FunctionName("QuestionTranscriptionVTTFn")]
+        [FunctionName("QuestionTranscriptionVTTFn")]  
         public void Run([BlobTrigger("samples-workitems/{name}", Connection = "")]Stream myBlob, string name, ILogger log)
         {
             log.LogInformation($"C# Blob trigger function Processed blob\n Name:{name} \n Size: {myBlob.Length} Bytes");
