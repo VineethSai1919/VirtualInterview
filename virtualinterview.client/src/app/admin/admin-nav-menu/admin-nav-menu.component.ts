@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../../Shared/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-nav-menu',
@@ -8,16 +9,14 @@ import { LoginService } from '../../Shared/login.service';
 })
 export class AdminNavMenuComponent {
   isNavbarOpen = false;
-  isNavVisible = true;
-  constructor(private loginService: LoginService) {
-   this.isNavVisible = this.loginService.isAuthenticated();
+  isNavVisible = false;
+  constructor(private loginService: LoginService, private route:Router) {
 
   }
-  //ngOnInint() {
-  //  this.loginService.getLoginStatus().subscribe(status => {
-     
-  //  })
-  //}
+  ngOnInit() {
+    this.isNavVisible = this.loginService.isAuthenticated();
+
+  }
 
   toggleNavbar() {
     this.isNavbarOpen = !this.isNavbarOpen;
@@ -28,7 +27,8 @@ export class AdminNavMenuComponent {
   }
 
   logout() {
-    console.log('Logging out...');
-    // Implement logout logic here (e.g., clearing session, redirecting)
+    this.loginService.logout();
+    this.route.navigate(['/admin/login']);
+
   }
 }
