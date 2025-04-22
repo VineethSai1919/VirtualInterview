@@ -9,5 +9,9 @@ namespace virtualInterview.EFCore
 {
     public class VirtualInterviewDbContext:DbContext
     {
+        public VirtualInterviewDbContext(DbContextOptions<VirtualInterviewDbContext> options) : base(options)
+        {
+
+        }
     }
 }

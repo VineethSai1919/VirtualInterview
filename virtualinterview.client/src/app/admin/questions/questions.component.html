@@ -48,7 +48,7 @@
                 <tr>
                     <th> </th>
                     <th>Question</th>
-                    <th>Action</th>
+                    <th class="text-center">Action</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-termdata>
@@ -58,7 +58,7 @@
                         <p-checkbox *ngIf="checked" [(ngModel)]="checked" name="checkedPage" id="checkedPage" [binary]="true" inputId="binary"></p-checkbox>
                         <p-checkbox *ngIf="!checked" [binary]="true" inputId="binary" (click)="selectPage(termdata)"></p-checkbox>
                     </td>
-                    <td title="Question" class="text-center">
+                    <td title="Question" >
                         {{ termdata.displayText }}
                         <b class="ms-1">
                             <span *ngIf="termdata.questionType == 1">
