@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Step 2: Register RoleRepository for Dependency Injection
 
-
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
